@@ -1,0 +1,45 @@
+Request URL: https://www.scotiaonline.scotiabank.com/online/views/accounts/summary/summaryStandard.bns?SBL=all&convid=247446
+Request Method: GET
+Status Code: 200 OK
+Remote Address: 104.64.220.167:443
+Referrer Policy: strict-origin-when-cross-origin
+Cache-Control: no-cache
+Cache-Control: no-store
+Cache-Control: must-revalidate
+Cache-Control: max-age=0
+Connection: keep-alive
+Content-Encoding: gzip
+Content-Length: 25374
+Content-Security-Policy: object-src 'self'; script-src * 'unsafe-inline' 'unsafe-eval'; frame-ancestors https://www.holliswealth.com https://holliswealth.com https://app.scotiaonline.scotiabank.com 'self' http://www.scotiabank.com/ https://app2.scotiaonline.scotiabank.com https://app1.scotiaonline.scotiabank.com
+Content-Type: text/html;charset=ISO-8859-1
+Date: Fri, 20 Jan 2023 02:14:12 GMT
+Expires: 0
+Pragma: no-cache
+Server: nginx/1.21.5
+Server-Timing: dtSInfo;desc="0", dtRpid;desc="30608529"
+Set-Cookie: route=f7beb83345577ba523aa6d5c11500fc4; path=/online
+Set-Cookie: SOLDC=www11; Domain=.scotiaonline.scotiabank.com; Path=/online; Max-Age=28800; Secure; HttpOnly
+Set-Cookie: bm_mi=784BF9CD9A0ECFDA06DC32EDC203E3AA~YAAQVO/dFyy4OaWFAQAABnv0zBJbEFuJeT67fcGJj2+sPAov7z9SyHkY98/6BzWT9ONo3y5N04kXsoCVwL3pntWWm6u+0+2d448uWN1s1siEkNmGPqAdq5FUyqU0lGRrDEbDIZ8zwOIB7Wy6vOPihIXOzFTvFDWmV6rc9JDqdZ5qy/fHqhCpKk6yahSz/TYaX/EYPsadyo4nzqqp+jAWQIHcAeGjhw60QQZa3bnEFYz/zhvY9B8/gMTV6FVaxecmQlxYfw9MweuRhXf4g6hk4hGZ0AGryy1+fuGPO3OZ8k/ECWyxaNCP7KTg9/QbDCHPTclGImvFyCZbB4Hf2cSBznBDzMSHrdBOZF3a7F9a6oaMa3SiRAoSIhTqLbPG1jzjSWEMcncQQzJIF2t2n4TDhA==~1; Domain=.scotiaonline.scotiabank.com; Path=/; Expires=Fri, 20 Jan 2023 04:13:40 GMT; Max-Age=7168; Secure
+Set-Cookie: bm_sv=98AD443FF86C59B9CBEBCEF39311C024~YAAQVO/dFy24OaWFAQAABnv0zBJpVIa84q6G1ICw5rCspDowd0MiSfVk6d+9v3q9zb8zvE9gJAtXWCxOZDjvxvPACuBRZTOtIdwORKGuBP1aSOWFf9VEMMlzLgbZCD6NPvyjKn5yk8aSYOwUWzOuF9ysn12sKwE4dXlL3j21YDjRqDGFpo/w6h8e2F66Com8Ao5nZJQGfxPAYzVEJwLYEwASnyPQ4YV2kZsbxroHOQE3YvX8MEFgiZrfRR59eefdobrUKR04JsZquxBmru4zOtc=~1; Domain=.scotiaonline.scotiabank.com; Path=/; Expires=Fri, 20 Jan 2023 04:13:40 GMT; Max-Age=7168; Secure
+TMXOff: Y
+Vary: accept-encoding
+X-Akamai-Transformed: 9 25072 0 pmb=mTOE,3
+X-OneAgent-JS-Injection: true
+X-Powered-By: JSF/1.2
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Connection: keep-alive
+Cookie: route=f7beb83345577ba523aa6d5c11500fc4; SOLDC=www11; language=""; SOP=pJ3o9iwdyYdOnD9jpOnMTA; JSESSIONID=27BC1DC0B0BF335395403C46B3505B30; dtCookie=v_4_srv_38_sn_CD42C803E12290E68343E073EB84007B_perc_100000_ol_0_mul_1_app-3A86d6f7379b6989bd_0; bm_sz=D6083E02F167915914FFF025C360E644~YAAQVO/dF8GxOaWFAQAAbPvzzBLt2Lrf2bipRiI+4wdOVOvl4HJdBjBfri2vvqoyHTGIkPf987KpTBEY/j81g7PVQMYf667XdXu9vWgPUgQR+sIx/pTMtTsG4VBliQtXHwm78yH+LsEg+OL+xnXzfvNupjAn1+dYQL3XAtuziigDH+x+ZQKjL4JGHgtb0HJNVR3ejqJ7N1rJ8beAOkm7H800FuX27zVTrjB5IlkIOaj+PK0o3qGr2LD75PenpC4lM2V1MKW3odGFj0ql/RsYPhzz2Ey1/aV1n8gRpMLxjIDEKRpxeUWn~3618356~4340034; ak_bmsc=635769B03D884605964B986CA8101536~000000000000000000000000000000~YAAQYTe50DSuzbeFAQAAnfzzzBIGaWV293xajoQznZ1c0pxoGQuNWwbkOf/ov9fGa+25DtwlWMAOYEwsxlsW1y1xb+wmuERRaG4ZR2PljALLv1+x+oI4bj8CTaywWH0ZKVIg5CaU/35WxWPzhMZGf0ph5aba3i1xoZSuSYs8C0LJOv7LXMIkfBUiZtnxyp/IKUvwLgCfXdRtgVPHABoSupVy+eoDSUTUtPhvXwxXFlzTGn8jVogCmJj3j5rRvifh4vp3PmtAQ9e590vO7NBcB5TzXsYyUYSKAgqAwISapsFt9H1BecAtzAcptbO1FHqddhd02MnYnRJhdGEERvRZlT8vEel6//Q7GL+UzzExIexaw6saKV6K8bnkPR60qhL0AmbEOCm86ksjyQRVZA0=; _gcl_au=1.1.1795631239.1674173499; s_ecid=MCMID%7C05668776674231757913902398046137813935; AMCVS_0AAF22CE52827A080A490D4D%40AdobeOrg=1; s_cc=true; AMCV_0AAF22CE52827A080A490D4D%40AdobeOrg=179643557%7CMCIDTS%7C19378%7CMCMID%7C05668776674231757913902398046137813935%7CMCAID%7CNONE%7CMCOPTOUT-1674180699s%7CNONE%7CMCAAMLH-1674778299%7C9%7CMCAAMB-1674778299%7Cj8Odv6LonN4r3an7LhD3WZrU1bUpAkFkkiY1ncBR96t2PTI%7CMCSYNCSOP%7C411-19385%7CvVersion%7C5.5.0; x-auth-sid=58408-2ad9e794-eaee-4f26-8b35-0f7b89e2cf12; bm_sv=98AD443FF86C59B9CBEBCEF39311C024~YAAQF+/dF1JuRXyFAQAAG1P0zBJSf3bhXjP84z/eOLGNqsiJHiXBr3bCkQ6ESF0ZgqeZqPIPEtX6m1ykRV2noyOCtgn0tK8ikfNfiq+XTfE9NEwtRFpaD5GpjFd/DBZlWI/qj8qTINwSoKvYUO2NPEx814ezPwP8dylqFWnqnQbgEZ6brcu3CdYa6G9ohdPjUBYaeKb9OflxkYiXUBoDdeIUUCmPjJ46uEj8iurF/cCbkktCjqWUs9i8/ahYnYDVclGp1eg5AhMSj/BjMfQ4YhI=~1; s_sq=%5B%5BB%5D%5D; UniqueUser=d1a262ec-8cef-4449-95e7-09a1ed3ce0da; tradeticket=scotiabank.com; br_flag=scotiabank.com; _abck=35ECF607365F70B4A35EFF7D23456F9F~-1~YAAQVO/dFwu4OaWFAQAAsnj0zAl36IqszcOI16BI2s7ljRf03gXNZT6cHLyFtyFGleevkzKhE09jh4G5/LIZxboEtcjyb/IIGWn63tFGqu73dP0w2onCqf8ziMK7jTV3rsM2hoQtTl/Vu2ONR3X0uo6/toVHwD4rZm6elEXbuIvGHhfqKQ/A7MbJzJJhUeWxU+ztgvpYuIjvPTvHg5aFTQRmi14sca3ZagCj8v/PDVqsnzMbmkuZRCjMroHaxTxYExdVroX/rwMqOGUfOGLqOJh9QGWiRJl8Ae+drDQ1SxOA3amqXxyCMMDgFzFi0kSBK/Wz2jyN7TFw0JiBKeciORhLHaHnIhH2PmV0+aE6IoAfalIlwnGA13bamTTvqcHQ3zTt2lehM2WWHLgYjgg22WIW3QrxsHy39ei23Q==~0~-1~1674184375
+DNT: 1
+Host: www.scotiaonline.scotiabank.com
+Referer: https://auth.scotiaonline.scotiabank.com/
+sec-ch-ua: "Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "Windows"
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-site
+Sec-Fetch-User: ?1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
