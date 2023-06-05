@@ -14,12 +14,11 @@ public class ServiceProvider {
     @Column(unique = true)
     private String name;
 
-    private String description;
+    private String details;
 
     private String category;
 
-    @OneToOne
-    private Geography geography;
+    private boolean isApproved;
 
     public Long getId() {
         return id;
@@ -37,12 +36,12 @@ public class ServiceProvider {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDetails() {
+        return details;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDetails(String description) {
+        this.details = description;
     }
 
     public String getCategory() {
@@ -53,12 +52,12 @@ public class ServiceProvider {
         this.category = category;
     }
 
-    public Geography getGeography() {
-        return geography;
+    public boolean isApproved() {
+        return isApproved;
     }
 
-    public void setGeography(Geography geography) {
-        this.geography = geography;
+    public void setApproved(boolean approved) {
+        isApproved = approved;
     }
 
     @Override
@@ -66,13 +65,13 @@ public class ServiceProvider {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ServiceProvider that = (ServiceProvider) o;
-        return name.equals(that.name) && Objects.equals(description, that.description)
-                && Objects.equals(category, that.category) && Objects.equals(geography, that.geography);
+        return name.equals(that.name) && Objects.equals(details, that.details)
+                && Objects.equals(category, that.category);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, description, category);
+        return Objects.hash(name, details, category);
     }
 
     @Override
@@ -80,9 +79,8 @@ public class ServiceProvider {
         return "ServiceProvider{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
+                ", description='" + details + '\'' +
                 ", category='" + category + '\'' +
-                ", geography=" + geography +
                 '}';
     }
 }

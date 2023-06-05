@@ -1,5 +1,6 @@
 package org.first.finance.automation.parcer.services;
 
+import jakarta.transaction.Transactional;
 import org.first.finance.automation.parcer.ChromeDriverPlus;
 import org.first.finance.automation.parcer.SeleniumPath;
 import org.first.finance.core.dto.AccountDto;
@@ -13,6 +14,7 @@ import org.first.finance.db.mysql.repository.AccountRepository;
 import org.first.finance.db.mysql.repository.AssetRepository;
 import org.first.finance.db.mysql.repository.ServiceProviderRepository;
 import org.first.finance.db.mysql.repository.TransactionRepository;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +52,7 @@ public abstract class ScotiaAccountSeleniumParser {
     public abstract void processAccount(AccountDto uiAccount, Account dbAccount, ChromeDriverPlus chromeDriver);
     public abstract String getApplicableAccountType();
 
-    public Account initAccount(AccountDto accountDto, ChromeDriverPlus chromeDriver) {
+    public Account initAccount(@NotNull AccountDto accountDto, ChromeDriverPlus chromeDriver) {
         Account account = new Account();
         account.setName(accountDto.getName());
         account.setAccountType(AccountType.valueOf(accountDto.getAccountType().toUpperCase()));
@@ -117,6 +119,10 @@ public abstract class ScotiaAccountSeleniumParser {
 
     public AssetRepository getAssetRepository() {
         return assetRepository;
+    }
+
+    protected ServiceProviderRepository getServiceProviderRepository() {
+        return serviceProviderRepository;
     }
 
     @Autowired

@@ -4,7 +4,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
 
 import java.util.Objects;
 
@@ -16,8 +15,7 @@ public class Geography {
 
     private String name;
 
-    @OneToOne
-    private Geography parentGeography;
+    private String parentGeography;
 
     public Long getId() {
         return id;
@@ -35,11 +33,11 @@ public class Geography {
         this.name = name;
     }
 
-    public Geography getParentGeography() {
+    public String getParentGeography() {
         return parentGeography;
     }
 
-    public void setParentGeography(Geography parentGeography) {
+    public void setParentGeography(String parentGeography) {
         this.parentGeography = parentGeography;
     }
 

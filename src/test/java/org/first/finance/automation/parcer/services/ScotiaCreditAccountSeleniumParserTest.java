@@ -13,6 +13,6 @@ class ScotiaCreditAccountSeleniumParserTest {
 
     @Test
     void parseFromDescription() {
-        System.out.println(scotiaCreditAccountSeleniumParser.parseFromDescription("PUNJAB AUTO FIXER MONTREAL QC"));
+        System.out.println(scotiaCreditAccountSeleniumParser.resolveServiceProvider("HOCHE GLACE MONTREAL QC", null));
     }
 }

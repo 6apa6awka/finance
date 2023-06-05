@@ -1,6 +1,7 @@
 package org.first.finance.db.mysql.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -11,7 +12,7 @@ public class ServiceProviderAlias {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     private ServiceProvider serviceProvider;
     private String value;
     private ServiceProviderAliasType type;

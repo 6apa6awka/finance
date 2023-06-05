@@ -31,6 +31,9 @@ public class CookiesUtils {
                         || !cookieProperty[CookieProperty.DOMAIN.ordinal()].contains(COOKIES_SCOTIABANK_DOMAIN)) {
                     continue;
                 }
+                /*if (".scotiabank.com".equals(cookieProperty[CookieProperty.DOMAIN.ordinal()])) {
+                    cookieProperty[CookieProperty.DOMAIN.ordinal()] = "https://scotiabank.com/";
+                }*/
                 driver.manage().addCookie(new Cookie(
                         cookieProperty[CookieProperty.NAME.ordinal()],
                         cookieProperty[CookieProperty.VALUE.ordinal()],

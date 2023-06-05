@@ -1,6 +1,7 @@
 package org.first.finance.db.mysql.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -23,13 +24,13 @@ public class Transaction {
 
     private Long transactionDate;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     private Account account;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     private Asset asset;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     private ServiceProvider serviceProvider;
 
     public boolean isDebit() {

@@ -1,5 +1,6 @@
 package org.first.finance.automation.parcer.services;
 
+import jakarta.transaction.Transactional;
 import org.first.finance.automation.parcer.ChromeDriverPlus;
 import org.first.finance.automation.parcer.WebElementPlus;
 import org.first.finance.core.dto.AccountDto;
@@ -10,6 +11,7 @@ import org.first.finance.db.mysql.entity.ServiceProviderAliasType;
 import org.first.finance.db.mysql.entity.Transaction;
 import org.first.finance.db.mysql.entity.TransactionType;
 import org.first.finance.db.mysql.repository.GeographyRepository;
+import org.first.finance.db.mysql.repository.ServiceProviderAliasRepository;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
@@ -33,13 +35,13 @@ import org.first.finance.db.mysql.entity.Account;
 
 import static org.first.finance.automation.parcer.ScotiaDomConstants.CREDIT_ACCOUNT_TRANSACTION_TOTALS;
 import static org.first.finance.automation.parcer.ScotiaDomConstants.CREDIT_ACCOUNT_TRANSACTION_TOTALS_ELEMENTS;
-import static org.first.finance.automation.parcer.utils.CommonUtils.sleep;
 
 @Service
 @PropertySource(value = "classpath:selenium/path/credit.properties")
 public class ScotiaCreditAccountSeleniumParser extends ScotiaCardAccountSeleniumParser {
     private static final Logger LOG = LoggerFactory.getLogger(ScotiaCreditAccountSeleniumParser.class);
     private GeographyRepository geographyRepository;
+    private ServiceProviderAliasRepository serviceProviderAliasRepository;
     @Override
     public void processAccount(AccountDto uiAccount, Account dbAccount, ChromeDriverPlus chromeDriver) {
         List<WebElementPlus> uiTransactions = chromeDriver.conditionalGetElements(By.xpath("//table[@summary='Transactions posted since last statement']/tbody/tr"));
@@ -88,36 +90,41 @@ public class ScotiaCreditAccountSeleniumParser extends ScotiaCardAccountSelenium
     @Override
     protected ServiceProvider resolveServiceProvider(String name, String category) {
         ServiceProvider serviceProvider = super.resolveServiceProvider(name, category);
-        if (serviceProvider != null) {
-            return serviceProvider;
+        if (serviceProvider == null) {
+            serviceProvider = parseFromDescription(name);
         }
-        return parseFromDescription(name);
+        return serviceProvider;
     }
 
     protected ServiceProvider parseFromDescription(String description) {
         String[] wordTokens = description.split(" ");
         String lastToken = wordTokens[wordTokens.length - 1];
+        ServiceProvider serviceProvider = null;
+        String name = null;
         if (lastToken.length() == 2) {
             Geography geography = geographyRepository.findByNameAndParentGeographyIsNull(lastToken.toUpperCase());
             if (geography != null) {
                 String locationToken = wordTokens[wordTokens.length - 2];
                 Geography location = geographyRepository.findByNameLikeAndParentGeography(locationToken.toUpperCase(), geography.getId());
-                ServiceProvider serviceProvider = new ServiceProvider();
-                serviceProvider.setGeography(location);
-                String name = Arrays.stream(wordTokens).limit(wordTokens.length - 2).collect(Collectors.joining(" "));
-                serviceProvider.setName(name);
-                ServiceProviderAlias serviceProviderAlias = new ServiceProviderAlias();
-                serviceProviderAlias.setValue(description);
-                serviceProviderAlias.setServiceProvider(serviceProvider);
-                serviceProviderAlias.setType(ServiceProviderAliasType.ALIAS);
-                return serviceProvider;
+                name = Arrays.stream(wordTokens).limit(wordTokens.length - 2).collect(Collectors.joining(" "));
+                serviceProvider = getServiceProviderRepository().findFirstByName(name);
             }
         }
-        return null;
+        if (serviceProvider == null) {
+            serviceProvider = new ServiceProvider();
+            serviceProvider.setApproved(false);
+            serviceProvider.setName(name == null ? description : name);
+            serviceProvider = getServiceProviderRepository().save(serviceProvider);
+        }
+        ServiceProviderAlias serviceProviderAlias = new ServiceProviderAlias();
+        serviceProviderAlias.setValue(description);
+        serviceProviderAlias.setServiceProvider(serviceProvider);
+        serviceProviderAlias.setType(ServiceProviderAliasType.ALIAS);
+        serviceProviderAliasRepository.save(serviceProviderAlias);
+        return serviceProvider;
     }
 
-
-
+    @Transactional
     private void processTransactions(Collection<Transaction> transactionsToProcess, Account account, long currentDate) {
         Collection<Transaction> dbTransactions = getTransactionRepository().findTransactionsByAccount_IdAndTransactionDateEquals(account.getId(), currentDate);
         for (Transaction transactionToProcess : transactionsToProcess) {
@@ -149,5 +156,10 @@ public class ScotiaCreditAccountSeleniumParser extends ScotiaCardAccountSelenium
     @Autowired
     public void setGeographyRepository(GeographyRepository geographyRepository) {
         this.geographyRepository = geographyRepository;
+    }
+
+    @Autowired
+    public void setServiceProviderAliasRepository(ServiceProviderAliasRepository serviceProviderAliasRepository) {
+        this.serviceProviderAliasRepository = serviceProviderAliasRepository;
     }
 }

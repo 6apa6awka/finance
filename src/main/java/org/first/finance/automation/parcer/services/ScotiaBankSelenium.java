@@ -112,15 +112,6 @@ public class ScotiaBankSelenium {
         return false;
     }
 
-    private String getString() {
-        String s = "Frnl7iE/XF_rPOG";
-        StringBuilder result = new StringBuilder();
-        for (char c : s.toCharArray()) {
-            result.append((char) (c - 5));
-        }
-        return result.toString();
-    }
-
     @Autowired
     public void setAccountRepository(AccountRepository accountRepository) {
         this.accountRepository = accountRepository;

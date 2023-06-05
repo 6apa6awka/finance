@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
+import static org.first.finance.sheets.core.GoogleSheetsDocument.SPENDING_CATEGORIES;
+
 @Service
 public class BalanceAdvisor {
     private AccountRepository accountRepository;
@@ -23,7 +25,7 @@ public class BalanceAdvisor {
         LOG.info("Start processing balances");
         LOG.info("_________________________________________");
         scotiaBankSelenium.start();
-        ArrayList<ArrayList<String>> cells = googleSheetsProcessingService.get();
+        ArrayList<ArrayList<String>> cells = googleSheetsProcessingService.read(SPENDING_CATEGORIES);
         BigDecimal currentAmount = accountRepository.findAll().stream()
                 .map(this::getAccountAmountAndLog)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
