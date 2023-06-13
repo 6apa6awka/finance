@@ -7,6 +7,7 @@ import org.springframework.data.repository.ListCrudRepository;
 import java.util.List;
 
 public interface ServiceProviderRepository extends ListCrudRepository<ServiceProvider, Long> {
+    ServiceProvider findFirstByNameAndIsApprovedIsTrue(String name);
     ServiceProvider findFirstByName(String name);
 
     @Query(value = "SELECT * FROM service_provider WHERE ?1 LIKE CONCAT('%', name, '%') LIMIT 1",

@@ -34,9 +34,9 @@ public class ScotiaBankSelenium {
             LOG.info("Starting process {} accounts", uiAccounts.size());
             uiAccounts.forEach(this::processAccount);
         } catch (Exception e) {
+            LOG.error("ERROR {} \n {}", e.getMessage(), e.getStackTrace());
             chromeDriver.close();
             chromeDriver.quit();
-            LOG.error("ERROR {} \n {}", e.getMessage(), e.getStackTrace());
             throw e;
         }
         chromeDriver.close();

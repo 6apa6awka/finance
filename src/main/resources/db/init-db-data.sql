@@ -21,5 +21,13 @@ LOAD DATA LOCAL INFILE 'D:/Programming/finance/src/main/resources/db/dataload/ge
     LINES TERMINATED BY '\n'
     (name, parent_geography);
 
+DELETE FROM category;
+
+LOAD DATA LOCAL INFILE 'D:/Programming/finance/src/main/resources/db/dataload/category/categories.txt'
+    INTO TABLE category
+    FIELDS TERMINATED BY ', '
+    LINES TERMINATED BY '\n'
+    (name, parent_category);
+
 
 

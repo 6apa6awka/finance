@@ -42,9 +42,15 @@ public class ScotiaCreditAccountSeleniumParser extends ScotiaCardAccountSelenium
     private static final Logger LOG = LoggerFactory.getLogger(ScotiaCreditAccountSeleniumParser.class);
     private GeographyRepository geographyRepository;
     private ServiceProviderAliasRepository serviceProviderAliasRepository;
+
     @Override
     public void processAccount(AccountDto uiAccount, Account dbAccount, ChromeDriverPlus chromeDriver) {
         List<WebElementPlus> uiTransactions = chromeDriver.conditionalGetElements(By.xpath("//table[@summary='Transactions posted since last statement']/tbody/tr"));
+        processUITransactions(uiTransactions, dbAccount, uiAccount);
+
+    }
+
+    private void processUITransactions(List<WebElementPlus> uiTransactions, Account dbAccount, AccountDto uiAccount) {
         long currentDate = LocalDate.now().toEpochDay();
         Collection<Transaction> transactionsToProcess = new ArrayList<>();
         for (WebElementPlus uiTransaction : uiTransactions) {
@@ -58,7 +64,7 @@ public class ScotiaCreditAccountSeleniumParser extends ScotiaCardAccountSelenium
             }
             long transactionDate;
             try {
-               transactionDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("MMM. d, yyyy")).toEpochDay();
+                transactionDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("MMM. d, yyyy")).toEpochDay();
             } catch (DateTimeParseException e) {
                 transactionDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("MMM d, yyyy")).toEpochDay();
             }
@@ -113,7 +119,7 @@ public class ScotiaCreditAccountSeleniumParser extends ScotiaCardAccountSelenium
         if (serviceProvider == null) {
             serviceProvider = new ServiceProvider();
             serviceProvider.setApproved(false);
-            serviceProvider.setName(name == null ? description : name);
+            serviceProvider.setName(description);
             serviceProvider = getServiceProviderRepository().save(serviceProvider);
         }
         ServiceProviderAlias serviceProviderAlias = new ServiceProviderAlias();

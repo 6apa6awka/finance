@@ -1,5 +1,6 @@
 package org.first.finance.core.services;
 
+import jakarta.transaction.Transactional;
 import org.first.finance.db.mysql.entity.ServiceProvider;
 import org.first.finance.db.mysql.entity.ServiceProviderAlias;
 import org.first.finance.db.mysql.entity.ServiceProviderAliasType;
@@ -7,14 +8,17 @@ import org.first.finance.db.mysql.entity.Transaction;
 import org.first.finance.db.mysql.repository.ServiceProviderAliasRepository;
 import org.first.finance.db.mysql.repository.ServiceProviderRepository;
 import org.first.finance.db.mysql.repository.TransactionRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Iterator;
 import java.util.List;
 
+@Transactional
 @Service
 public class ServiceProviderService {
+    private static final Logger LOG = LoggerFactory.getLogger(ServiceProviderService.class);
     private ServiceProviderRepository serviceProviderRepository;
     private ServiceProviderAliasRepository serviceProviderAliasRepository;
     private TransactionRepository transactionRepository;
@@ -24,8 +28,21 @@ public class ServiceProviderService {
 
     public ServiceProvider findByText(String textToResolve) {
         ServiceProviderAlias serviceProviderAlias = serviceProviderAliasRepository.findFirstByAlias(textToResolve);
+        ServiceProvider result = null;
         if (serviceProviderAlias != null) {
-            return serviceProviderAlias.getServiceProvider();
+            result = serviceProviderAlias.getServiceProvider();
+            LOG.debug("Found service provider {} for alias {}", result.getName(), serviceProviderAlias.getValue());
+            return result;
+        }
+        result = serviceProviderRepository.findFirstByName(textToResolve);
+        if (result != null) {
+            ServiceProviderAlias newAlias = new ServiceProviderAlias();
+            newAlias.setValue(textToResolve);
+            newAlias.setServiceProvider(result);
+            newAlias.setType(ServiceProviderAliasType.ALIAS);
+            serviceProviderAliasRepository.save(newAlias);
+            LOG.debug("Service provider with name {} exists, but no alias. It will be created.", result.getName());
+            return result;
         }
         serviceProviderAlias = serviceProviderAliasRepository.findFirstByMnemonicContainingIgnoreCase(textToResolve);
         if (serviceProviderAlias != null) {
@@ -34,7 +51,9 @@ public class ServiceProviderService {
             newAlias.setServiceProvider(serviceProviderAlias.getServiceProvider());
             newAlias.setType(ServiceProviderAliasType.ALIAS);
             serviceProviderAliasRepository.save(newAlias);
-            return newAlias.getServiceProvider();
+            result = newAlias.getServiceProvider();
+            LOG.debug("Found service provider {} for mnemonic {}. Adding new alias {}", result.getName(), serviceProviderAlias.getValue(), textToResolve);
+            return result;
         }
         return null;
     }
@@ -43,20 +62,26 @@ public class ServiceProviderService {
         List<ServiceProvider> serviceProviderList = serviceProviderRepository
                 .findByNameContainingAndIsApprovedIsFalse(serviceProviderAlias.getValue());
         for (ServiceProvider serviceProvider : serviceProviderList) {
-            List<Transaction> transactions = transactionRepository.findByServiceProvider(serviceProvider);
-            transactions.forEach(t -> updateTransaction(t, serviceProviderAlias.getServiceProvider()));
-            ServiceProviderAlias newServiceProviderAlias = new ServiceProviderAlias();
-            newServiceProviderAlias.setValue(serviceProvider.getName());
-            newServiceProviderAlias.setServiceProvider(serviceProviderAlias.getServiceProvider());
-            newServiceProviderAlias.setType(ServiceProviderAliasType.ALIAS);
-            serviceProviderAliasRepository.save(newServiceProviderAlias);
-            serviceProviderRepository.delete(serviceProvider);
+            updateServiceProvider(serviceProviderAlias.getServiceProvider(), serviceProvider);
         }
+    }
+
+    public void updateServiceProvider(ServiceProvider newServiceProvider, ServiceProvider serviceProviderToReplace) {
+        transactionRepository.findByServiceProvider(serviceProviderToReplace)
+                .forEach(t -> updateTransaction(t, newServiceProvider));
+        serviceProviderAliasRepository.findAllByServiceProvider(serviceProviderToReplace)
+                .forEach(t -> updateAlias(t, newServiceProvider));
+        serviceProviderRepository.delete(serviceProviderToReplace);
     }
 
     private void updateTransaction(Transaction transaction, ServiceProvider serviceProvider) {
         transaction.setServiceProvider(serviceProvider);
         transactionRepository.save(transaction);
+    }
+
+    private void updateAlias(ServiceProviderAlias alias, ServiceProvider serviceProvider) {
+        alias.setServiceProvider(serviceProvider);
+        serviceProviderAliasRepository.save(alias);
     }
 
     @Autowired

@@ -12,6 +12,8 @@ import com.google.api.client.json.gson.GsonFactory;
 import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.sheets.v4.Sheets;
 import com.google.api.services.sheets.v4.SheetsScopes;
+import com.google.api.services.sheets.v4.model.BatchUpdateValuesRequest;
+import com.google.api.services.sheets.v4.model.SetDataValidationRequest;
 import com.google.api.services.sheets.v4.model.ValueRange;
 import org.first.finance.sheets.core.GoogleSheetsDocument;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -24,13 +24,13 @@ public class Transaction {
 
     private Long transactionDate;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne
     private Account account;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne
     private Asset asset;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne
     private ServiceProvider serviceProvider;
 
     public boolean isDebit() {

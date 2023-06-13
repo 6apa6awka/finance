@@ -1,0 +1,21 @@
+Apartment Rent, null
+Bill, null
+Cloth, null
+Day Care, null
+Furniture, null
+Free time, null
+Make Up, null
+Other, null
+Psychologist, null
+Small buying, null
+Supermarket, null
+Transportation, null
+Travelling, null
+Utilities, Bill
+Restaurant, Free time
+Fuel, Transportation
+Internet, Utilities
+Light, Utilities
+Mobile, Utilities
+
+

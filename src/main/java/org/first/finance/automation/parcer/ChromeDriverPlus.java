@@ -72,7 +72,7 @@ public class ChromeDriverPlus extends ChromeDriver {
     public void get(String url) {
         super.get(url);
         if (!isCookieSet && this.manage().getCookies().isEmpty()) {
-            restoreCookies(this);
+            //restoreCookies(this);
             isCookieSet = true;
         }
         sleep(2000);
@@ -80,7 +80,7 @@ public class ChromeDriverPlus extends ChromeDriver {
 
     @Override
     public void quit() {
-        storeCookies(this);
+        //storeCookies(this);
         super.quit();
     }
 

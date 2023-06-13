@@ -1,49 +1,27 @@
-dtPC	40$160892786_442h-vKHBMRHRBSACMRCKOQERQAKNCMMKKKSRA-0e0	.scotiabank.com	/	Session	59						Medium
-kampyleUserSession	1674760894577	www.scotiaonline.scotiabank.com	/	2024-01-26T19:21:34.000Z	31		✓	None			Medium	
-dtLatC	2	.scotiabank.com	/	Session	7						Medium	
-_ga_4SVMV7SBDS	GS1.1.1674692796.2.0.1674692796.60.0.0	.scotiabank.com	/	2024-03-01T00:26:36.291Z	52		✓	None			Medium	
-_abck	05F23E39B4E5E2A99BF9794DF02562AD~0~YAAQR/APF5lx9c6FAQAAlcv27wk6SIaAITB4tExs8AQIEJMjYy29bkUychJ11+ZvFreLmSIT1DOpzs4TaaoR/S7rWHLRnA2vB1EFMwWEDB/ncDR/n+4zysZxkP5Wqs4glSd2bkwayJDdOXR0CHvqIjpEzzle9xb5hSo7Omx9kIJqwB7HaWUmhqZl2YPfdq28hjt7RUs1OgSEr0dfbVmzI4cdbNhXzKwq/qguxx3qGh5lKFL+eCA8kI1eDLVuf147pqIZjIzMxRH9JS4wp8Udqi0MQ33g9l1ouB//AwINw/6jYMPVbtvYT7a8XoASuDWkq7JutBSAw+9G1QrphZlRvJEWzpQVMXadlDyR5BGVJnvML9BwN2EbdHq8CmG/1GlRWEp8/XNSFo/MLguwpo9HsyHV8B93iD8n5TBXjg==~-1~-1~1674771770	.scotiabank.com	/	2024-01-26T19:21:30.093Z	481		✓				Medium	
-_ga	GA1.3.2141168044.1674666649	.scotiaonline.scotiabank.com	/	2024-03-01T19:21:33.147Z	30						Medium	
-AMCV_0AAF22CE52827A080A490D4D%40AdobeOrg	179643557%7CMCIDTS%7C19383%7CMCMID%7C16193441143709628372566438087078149447%7CMCAAMLH-1675365685%7C9%7CMCAAMB-1675365685%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1674768085s%7CNONE%7CMCAID%7CNONE%7CvVersion%7C5.5.0	.scotiabank.com	/	2024-03-01T19:21:25.700Z	279						Medium	
-mbox	PC#adf2efc75c62415d9dedf4d6b531790f.34_0#1737937596|session#c433df9e5e624c7ba27d6e4ff77f4275#1674694656	.scotiabank.com	/	2024-03-01T00:26:35.739Z	107						Medium	
-_gat_550fa42785114034a5a58354b75145a4	1	.scotiaonline.scotiabank.com	/	2023-01-26T19:22:33.000Z	38						Medium	
-JSESSIONID	8E55DA7563E75E91AA5B5BF371F90424	www.scotiaonline.scotiabank.com	/	Session	42	✓	✓				Medium	
-kampyleUserSessionsCount	127	www.scotiaonline.scotiabank.com	/	2024-01-26T19:21:34.000Z	27		✓	None			Medium	
-bm_sz	39BD37BAD7BCD86CD5EE80C290C6C416~YAAQVvTVF8fj89KFAQAA0fk97xKssvhr3VewJGXn2W8/1Y6HTUB2AmfoNhFv7JRGrGHJXHWV9ONC9OkzFH8l7/05a1JnqCScSIXkUeBbB7BRWTGy+9/Dkp5nQga+Mpo8dUhz9x0TyO5aBvU2GiOE5RuzLAU28/72n2txwAoW+Ucwew4EMZd25pnLae8X8e+bUVTzTJ+8xotPjEtXYEPNlj4o+LnxaWCI3Tc7c8uU+VtO3q4+Ti/h+ugzjpC4CAD8zsxet5LupNd56gUO54717tujeofCvzYToJnccmVcBKlUn39CTPMm~3159095~3289670	.scotiabank.com	/	2023-01-26T19:59:37.586Z	362						Medium	
-bm_mi	E0E840DB50A226222BA448C0C40BF82C~YAAQLfAPF1yUBdCFAQAArdX27xIULP/09JfWmV7b018UhDnyfbVqmC8ncbNrpTl9+elxp6ZReuL4V3td0ZAVP4VjHP05lfy7arLo4XC/PhAHyH0HcwfH0DyMzsK7zydVdFEiVGge/yKMAA5l2G4zy7sdJmoxKNfdDRV9OcAyY7wxtuiba9wfD9lpvptFNtqoLJIV2FOVY+QAPmU2hiz5AA7OFAUxZCB2kXE3EhBknLOBLFEvZ5fcPKdKcATQ0vuzwNAjU3fOjDlUTeKG1tYoVXpzxWMTVf02U6jimTiuh8WPIwXeP4V1FRBE5oPBgjnuSuSA3vQNLkgVnoOjZvGQG1m1H+58totNhmCcmYFHSqUl1N3TQIGIYdklsRRz8lZWWGA9fXrMsKL3TkMoV+oViVG3ZTcpFdU06pTV~1	.scotiaonline.scotiabank.com	/	2023-01-26T21:21:22.681Z	460		✓				Medium	
-kampyleSessionPageCounter	1	www.scotiaonline.scotiabank.com	/	2024-01-26T19:21:34.000Z	26		✓	None			Medium	
-_ga	GA1.1.237034336.1674676175	.scotiabank.com	/	2024-03-01T00:26:36.292Z	29		✓	None			Medium	
-bns-auth-saved-users	%5B%7B%22maskedId%22%3A%22orl*****rst%22%2C%22lreid%22%3A%22jqNkwzYceOUBR5VOk4Z56g%22%2C%22twoSVToken%22%3A%22eyJraWQiOiIyMDIxIiwiY3R5IjoiSldUIiwiZW5jIjoiQTEyOEdDTSIsImFsZyI6IlJTQS1PQUVQLTI1NiJ9.GxOWcLRWmT5hhq5yJyvLcqaY_dqE3RR61yMhUdMPjHkOfzeocEjEasJ4TUNCWDWt6Nq1M3bDYwvpqox5BfWeBJBg3eYxJVQrxWMuY5Xi-dYhy8fCF_uYClOMqIeLe9Oapw_obPh6amc_x0qBR8gZBALkTHB-HZyqIXnyQx0ZOFcks4XuTkXSpbhzU_cTCP4uWLf2q8Xul_otQ-cs7zW1GE084zQPT2l67SNST06yQq01BtoJPxCNzYQnKXy9GSVcDslaltvbn1_TG03kLMnnMbq8QWZvm9dZftTqoKzo5-xqw8YcFHoLdU1EvY4xnH2bjUjhmk2seljbf3tcjrCdyw.X6_vO-NKlQWC0aMF.ChVV_G6KIE5JFHxzHqkEkiLVxekOTURmWG3eF4PaIk0v8p8_RrQx2ylYr459C_cY2QQ3pviWJaBkNtwGuV5My2WzFr4_sd4hSzQTKjKwUdxE9D-8PkhStTRTyDDQ_vTcvarcl3quYX9eb3IoS0LpXO6RR9CXp8mTOBduo8HJkAnBa6g3RobabAxMNxsNIk2ffDemzjqgoHQxvlOoF9jP9Opwbi0Wb1Wx1mj-nlA49_PdqM_MY6AGmp6GRfOJGs6ZPGnGEWIfOg22_U2el5egwxyR7yPXPRxYkjMz99PYF7jpnRlq0bn2YJHtMUpPAHE29U1Q_TaXru4q_5pW4BPdBaZ5NK9BsFeuYPsUJi40AsN22ozY7UuMeqvQui8D3HqyRlbYiXHaSdRlPnTxAaxyBb02yRMXkTw9S_KpfqdtDxeucBkkaQPZrb4lNAoV…	auth.scotiaonline.scotiabank.com	/	2023-04-26T19:21:30.093Z	1657	✓	✓	Lax			Medium	
-rxvt	1674762695944|1674760148974	.scotiabank.com	/	Session	31						Medium	
-at_check	true	.scotiabank.com	/	Session	12						Medium	
-s_plt	2.25	.scotiabank.com	/	Session	9						Medium	
-aam_uuid	19758859321901241673354901323916136533	.scotiabank.com	/	2023-02-25T00:26:36.000Z	46						Medium	
-s_pltp	Scotiabank%20Global%20Site	.scotiabank.com	/	Session	32						Medium	
-dtCookie	v_4_srv_40_sn_E20E05DDA51888873F421A93341D397D_app-3A86d6f7379b6989bd_1_ol_0_perc_100000_mul_1	.scotiabank.com	/	Session	102						Medium	
-_gid	GA1.2.1633386813.1674676175	.scotiabank.com	/	2023-01-27T00:26:35.000Z	31						Medium	
-bm_sv	E0662B1B069AE3BF8AB37095EB877F25~YAAQLfAPFwGVBdCFAQAAVOX27xKnlqTRN3p/PJcoaLbHE+/m6RMEBktteN4palOqeEcRDyh+mxsVm5JWuy5i1w8n8tivf7L0t4D7om3HUzIdXtiiwK1S1Trl9xNSOkLMZWtmn6MmIPmIf6KHVXsoG7Gsj9Tq0yxoXMVG6QKxQa7Krb+CGscNWgVxrxjsOQdLi30BdPSU00Te7WAbNOUxyP2HY0UaHxAuwaShTTWzonPog2RU62qy1xruorwDLz0lfWnfY+xjpbNmKdmtv9uPxfI=~1	.scotiaonline.scotiabank.com	/	2023-01-26T21:21:22.684Z	320		✓				Medium	
-CADEQ1922643710	show	www.scotiaonline.scotiabank.com	/online/views/accounts/accountDetails	Session	19						Medium	
-tradeticket	scotiabank.com	.scotiabank.com	/	Session	25	✓	✓				Medium	
-cd_user_id	185e9e925b770-016f1ca416c887-26021051-1fa400-185e9e925b8101b	.scotiaonline.scotiabank.com	/	2024-01-25T17:10:49.000Z	70						Medium	
-dtSa	-	.scotiabank.com	/	Session	5						Medium	
-rxVisitor	167415040834600LS2D5AMPAJG2S7VFLR11P8G2PR82UT	.scotiabank.com	/	Session	54						Medium	
-route	a23d66bccc76cdd664e19f340ea7c300	www.scotiaonline.scotiabank.com	/online	Session	37						Medium	
-language	0000CCB0903E84B7BD744AAA51050D01FA56DF4095B9219FC03180BD76	.scotiaonline.scotiabank.com	/online	2024-03-01T19:21:32.241Z	66	✓	✓				Medium	
-UniqueUser	d1a262ec-8cef-4449-95e7-09a1ed3ce0da	.scotiabank.com	/	2024-03-01T19:21:32.241Z	46	✓	✓				Medium	
-bns_data	{%22actions%22:{%22LOGGED_IN%22:false%2C%22APP_START%22:false%2C%22APP_COMPLETE%22:false%2C%22COMPARER_START%22:false%2C%22COMPARER_COMPLETE%22:false%2C%22SELECTOR_ACTIVE%22:false%2C%22HAS_SEARCHED%22:false}%2C%22site%22:{%22brand%22:%22bns%22%2C%22name%22:%22Scotiabank%22%2C%22env%22:%22production%22%2C%22country%22:%22%22%2C%22language%22:%22en%22%2C%22release%22:%220%22%2C%22platform%22:%22aem%22%2C%22platformType%22:%22desktop%22}%2C%22user%22:{%22searchQuery%22:false%2C%22searchCount%22:0%2C%22uid%22:false%2C%22cid%22:false%2C%22type%22:%22non-customer%22%2C%22authState%22:%22non-authenticated%22%2C%22lastVisited%22:%22https://www.scotiabank.com/global/en/global-site.html%22%2C%22segment%22:%22personal%20banking%22}}	.scotiabank.com	/	Session	739		✓				Medium	
-_gid	GA1.3.2038494590.1674666649	.scotiaonline.scotiabank.com	/	2023-01-27T19:21:33.000Z	31						Medium	
-br_flag	scotiabank.com	.scotiabank.com	/	Session	21	✓	✓				Medium	
-s_sq	scotiabanknewscotiaonlineprod%252Cscotiabankglobal%3D%2526pid%253Dviews.accounts.accountDetails.velocityAcctDetails.pageId%2526pidt%253D1%2526oid%253Dfunctiononclick%252528event%252529%25257BA4J.AJAX.Submit%252528%252527form%25255Cx2Dfor%25255Cx2Dmpsa%25255Cx2Dfusion%25255Cx2Ddisclosure%252527%25252Cevent%25252C%25257B%252527similar%2526oidt%253D2%2526ot%253DBUTTON	.scotiabank.com	/	Session	371						Medium	
-s_cc	true	.scotiabank.com	/	Session	8						Medium	
-_gcl_au	1.1.1195704711.1674666623	.scotiabank.com	/	2023-04-25T17:10:23.000Z	32						Medium	
-mdLogger	false	www.scotiaonline.scotiabank.com	/	2024-01-26T19:21:34.000Z	13		✓	None			Medium	
-CADFI1922643710	show	www.scotiaonline.scotiabank.com	/online/views/accounts/accountDetails	Session	19						Medium	
-SOP	z3Pg2pvjiDoRLDy8dWPXlw	www.scotiaonline.scotiabank.com	/online	Session	25	✓	✓				Medium	
-ak_bmsc	628BB73253ABFF9DFCAFDC0DFD84B77B~000000000000000000000000000000~YAAQ1/APF5Qcz9GFAQAANq727xLn87/T6ejkvCW9JxxFltRicDTvnuAs9inxvmTIDA3XVSpuo+JqcJhYQBCspHORt25pzk1Gmx3bKZNDhc2daGDL9pXGN4OTngNxrNdeSKNnXC0NbjbmN2A89zr63HUU9rAmee+TVvZRQ22YxeDMJZ58IodXpes9G1wsbOcuVYQeVkfGwaWUgPU7RLr/RkqrMI6JpfbndQRZji8bS5hmihpbPxGzTtS3na5vDL7rzKNuFAAa3Fpp28qtO2E5CkP7jD6ww6uQGq8rsXuUlfCv3k+nCLwuSGWQGXMgZh0QtAxi6GLvVuim/ziiPjrYSj+xEIVHTKAUIRvy4vcEkkcpw5oyLuVq5hPYzBYv8hp6ublEpWqjS1v+7M27q6I=	.scotiabank.com	/	2023-01-26T21:21:22.573Z	475	✓					Medium	
-SOLDC	www7	.scotiaonline.scotiabank.com	/online	2023-01-27T03:21:36.684Z	9	✓	✓				Medium	
-AMCVS_0AAF22CE52827A080A490D4D%40AdobeOrg	1	.scotiabank.com	/	Session	42						Medium	
-x-auth-sid	58408-f07da91f-d8c4-4b14-bb06-becfb005a066	.scotiabank.com	/	Session	52	✓	✓	Lax			Medium	
-s_ecid	MCMID%7C16193441143709628372566438087078149447	.scotiabank.com	/	2024-03-01T19:21:34.127Z	52						Medium	
-ak_bmsc	628BB73253ABFF9DFCAFDC0DFD84B77B~000000000000000000000000000000~YAAQLfAPF5iUBdCFAQAAsdz27xJ9tFW0lBbKKSUHu09uiCAQFdydgG54rVl20QMp8tVwvjwGxZahtoQ/rRAPzNxyo+eDS542hPPs5ZRcQxumtYzG+btkXqqCL7U/OoC7JkZ82Fs/GHMBlrPXlsrZReZtAITMZCI2PEZIOe56EjQ5O/qNtRj3MIqo5FCZonF8WLKlbioZmRxGO5v0KzEvxfLAb9BmXg5mk9395Brnwqny1JX0G1ID+V4rpcBHOPrT8tH6fWtgDFbdgAyvln3KycdyciZxGnE8ukRLxh7pgQnpvLo1NNsxNwxgP2JXZI+Z7rKdu4rxWkpEddckD1y17ZOMuaQDeMJeGwjxVeu/Suq3jeLd4qhvg0gkmadxTaUqN6S4TcErNwsBGdTdPwssyaAEZoaUPn8kcW1KVms=	.scotiaonline.scotiabank.com	/	2023-01-26T21:21:22.472Z	495	✓					Medium	
-soljsoncontent	%7B%22PRODS%22%3A%5B%22CSS%3ACSS%3AAM%22%2C%22SDBI%3ASL%3A1%22%2C%22IP%3ATFS%3A%22%2C%22SAV%3ASAV%3AAU%22%2C%22IP%3ABSA%3AMP%22%2C%22VIS%3AVCL%3ADM%22%2C%22SCE%3ASCE%3A%22%2C%22IP%3ABSA%3AP5%22%2C%22IP%3ABSA%3AP2%22%2C%22SDBI%3ASL%3A%22%2C%22IP%3ABSA%3AP1%22%5D%2C%22ISBK%22%3Atrue%2C%22REGSTATUS%22%3A%5B%22SCENE%22%5D%2C%22AGESEGMENT%22%3A%7B%22MIN%22%3A%2225%22%2C%22MAX%22%3A%2234%22%7D%2C%22BLS%22%3A%5B%22SDBI%3ASL%22%2C%22R%3A%22%5D%2C%22ISBRK%22%3Atrue%2C%22DBTCARDTYPE%22%3A%5B%22S%3AV%22%5D%2C%22PROV%22%3A%22QC%22%7D	www.scotiaonline.scotiabank.com	/online	Session	541	✓	✓				Medium	
-solcontent	%7E%7E%7Elsc_en%3D4899%3A%7Elql_en%3D159%3A%7E%7E	www.scotiaonline.scotiabank.com	/online	Session	59	✓	✓				Medium	
+bm_sv	E0C65637DE4D7E55F68FCFEAC2A31301~YAAQxyckF6zgkWyIAQAANoV9iBR1wx2gJPTMXmLB3Uwk1yVjEfKsYarVtn22e0cui/ESw2JML1LJQ2S25/Ec9CB1pMRAbzgZ7aT7ILmU7VMe7BrMdGSm38plX5kYgdJI6c61AMPHOBK8UXJkUDk/vtVkPckczsEsJ8BZP+iZ/kim8AN/VhAxREm9QCmAThSt7boY8ai6/P6czXL3NsS0O6Z++SiskJVxHQexZAfqg/EDSjRmGcvynRlSXufCjWZWIhLES1I=~1	.scotiabank.com	/		2023-06-04T18:18:57.000	✓		Lax
+_abck	F21493DF70CEE759E1A52EA767827E8B~0~YAAQxCckF9mP9XuIAQAA5HF9iApMZ8a+FWLtRUKoYaN73qLBW/c5IyNuYuwHmGdkMw+kcqhdILpyZYffe0revRRleLKwueHc/lqRQ5ANi9ZEnjCMrP17GOGnah83/oRnA5A3g22XO/pZ1sT64F3sFfnW9vmPqj/3paWfSuCcEzVnLtYkMRLS+DJT6wbCyv7llyFKwNbJEfDIzE4E+fzVuK1a51qCZKhfmzm+dl76uM7tONbc7Ht5WNzPlI1ei7/wwwczlWVdNjaOCFhzYQvyh6YzJ1KEp0KoTkurB77lDePgmsuFsHNHCqjd239m029r52uWJT9NM3WmiXpzg1u8mA6SNKViCJSOeXEx1caSWR+ine9TFmwRFOblEb2/xAPbNJU+YaCJ9RA7rOI5YIdfx3sTnjgVRVUXSt66ig==~-1~||1-IqMSRSaJKm-1-10-1000-2||~1685920586	.scotiabank.com	/		2024-06-03T16:19:36.000	✓		Lax
+tradeticket	scotiabank.com	.scotiabank.com	/			✓	✓	Lax
+_gat_550fa42785114034a5a58354b75145a4	1	.scotiaonline.scotiabank.com	/		2023-06-04T16:20:40.000			Lax
+JSESSIONID	C76D1D0898E23377DEAAE4E15DB4EB91	www.scotiaonline.scotiabank.com	/			✓	✓	Lax
+language	""	.scotiaonline.scotiabank.com	/online		2024-07-08T16:19:39.000	✓	✓	Lax
+bm_sz	FC65A3DD6D2A2287929188BD7220697D~YAAQxyckF8jPkWyIAQAAJdl8iBRkPBij16dSrmd4P9y3fXowiFx9iW1sIkubdI/U4b4cy2R3B0HLS2CFeTvUAfaH501D7BcmuGzqXJXCObvYdvyIG6Lu/QVanKuVACxG/zRiX63CsTts0z7kYwk6KqMhouXO6qRSIVjj2FoSiaNCvxueBEFRxMuEaeMTkQWsFmy0AnVIkB12LbtGLcZUp67EW0iNk5cdfxdL9aWsx5RkDXc54G94QPoim/aFLrkYMvh8swWiRB5g3UOZgkjIBh0Zih2cg9+pLaak5XSLDlew0OwYtPMx~3289904~3228984	.scotiabank.com	/		2023-06-04T20:18:57.000			Lax
+dtSa	-	.scotiabank.com	/					Lax
+rxVisitor	16859099803647EGJPSC4ICDVDKMMCUEE4CE2MFRP9DF2	.scotiabank.com	/					Lax
+s_cc	true	.scotiabank.com	/					Lax
+SOLDC	www11	.scotiaonline.scotiabank.com	/online		2023-06-05T00:19:41.000	✓	✓	Lax
+dtLatC	1	.scotiabank.com	/					Lax
+x-auth-sid	58408-f188af26-305a-4195-813b-0bd9f62ead29	.scotiabank.com	/			✓	✓	Lax
+s_sq	%5B%5BB%5D%5D	.scotiabank.com	/					Lax
+s_ecid	MCMID%7C42869630339233471120636365561158712599	.scotiabank.com	/		2024-07-08T16:19:40.000			Lax
+AMCV_0AAF22CE52827A080A490D4D%40AdobeOrg	179643557%7CMCMID%7C42869630339233471120636365561158712599%7CMCIDTS%7C19513%7CMCAID%7CNONE%7CMCOPTOUT-1685917138s%7CNONE%7CMCAAMLH-1686514738%7C7%7CMCAAMB-1686514738%7Cj8Odv6LonN4r3an7LhD3WZrU1bUpAkFkkiY1ncBR96t2PTI%7CvVersion%7C5.5.0	.scotiabank.com	/		2024-07-08T16:18:58.000			Lax
+ak_bmsc	66EDF9E41B98145559E078AF9FA211AF~000000000000000000000000000000~YAAQXTe50KX5yXaIAQAAIZ98iBTHelMxeP2BxsiJLAiFa4sZD8AouZEJ7347BSgE2vJeX40O98ITxc8Cnbfe7JBV04oBxyl350UfcKbW/XexGIPGKIIVQuRcl0IXo7w7y1dF43XY3fcTOzsU4uK2pWHAA7ouasP/32lWRP/Mh4iJ1pguOn8zOMDYKjFThOlhCwqV+3D8lMOdC3RX/U2pSoSU0k2OETEH48PrsxcjaqdZH8c9l6bacLpDPHNgwJ2nT4Q0jLaZ1xXWiFrVOOk4er8ivJrdkZNujAVi4n/ka3rC0A9R1YeZdVkYzTIGIxGuo1rqjpOgW3qyOz7zcUS55QuVz9cJsPSyuYTuSnpptHLWOYL+UiYgRFxgc1tyGcxWpzI13Y0aAcl1w3jjwTakeloCfSWk3xaex07RJbAqobtJEY+RZ3a8CFVfv2bcjoZaMc/uziRNIzg31+WghhZb+zQzhS0p5pcZ8LkI5ut7T+TB0cr/9w==	.scotiabank.com	/		2023-06-04T18:18:41.000		✓	Lax
+dtPC	33$509980359_402h-vTKKUDIRLOAVRKGHPTKRFFCACFKQAUAHU-0e0	.scotiabank.com	/					Lax
+br_flag	scotiabank.com	.scotiabank.com	/			✓	✓	Lax
+_gid	GA1.3.188190996.1685909981	.scotiaonline.scotiabank.com	/		2023-06-05T16:19:40.000			Lax
+rxvt	1685911781372|1685909980367	.scotiabank.com	/					Lax
+route	d89a7fcbc8aa2e54168dcfb9c918a2a4	www.scotiaonline.scotiabank.com	/online					Lax
+SOP	giFk4%2F41rnIGWOqKfTCG%2Bw	www.scotiaonline.scotiabank.com	/online			✓	✓	Lax
+UniqueUser	d1a262ec-8cef-4449-95e7-09a1ed3ce0da	.scotiabank.com	/		2024-07-08T16:19:39.000	✓	✓	Lax
+_ga	GA1.3.1240322405.1685909981	.scotiaonline.scotiabank.com	/		2024-07-08T16:19:40.000			Lax
+dtCookie	v_4_srv_33_sn_C3940F143A62DD9366DDC03FE07D3490_app-3A86d6f7379b6989bd_1_ol_0_perc_100000_mul_1_rcs-3Acss_0	.scotiabank.com	/					Lax
+AMCVS_0AAF22CE52827A080A490D4D%40AdobeOrg	1	.scotiabank.com	/					Lax

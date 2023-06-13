@@ -89,6 +89,7 @@ public abstract class ScotiaAccountSeleniumParser {
         return transactionRepository.save(transaction);
     }
 
+    @Transactional
     protected ServiceProvider resolveServiceProvider(String name, String category) {
         return serviceProviderService.findByText(name);
     }
