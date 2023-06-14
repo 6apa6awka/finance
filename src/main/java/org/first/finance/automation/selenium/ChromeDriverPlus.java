@@ -1,4 +1,4 @@
-package org.first.finance.automation.parcer;
+package org.first.finance.automation.selenium;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -13,12 +13,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.first.finance.automation.parcer.utils.CommonUtils.sleep;
-import static org.first.finance.automation.parcer.utils.CookiesUtils.restoreCookies;
-import static org.first.finance.automation.parcer.utils.CookiesUtils.storeCookies;
+import static org.first.finance.automation.selenium.utils.CommonUtils.sleep;
 
 public class ChromeDriverPlus extends ChromeDriver {
-    private Actions actions;
+    private final Actions actions;
     private boolean isCookieSet = false;
     private final static String CHROME_DRIVER_LOCATION_PROPERTY_NAME = "webdriver.chrome.driver";
     private final static String CHROME_DRIVER_LOCATION_PROPERTY_PATH = "D:\\Programming\\chromedriver\\chromedriver.exe";

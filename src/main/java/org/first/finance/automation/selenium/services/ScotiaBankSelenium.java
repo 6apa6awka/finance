@@ -1,7 +1,8 @@
-package org.first.finance.automation.parcer.services;
+package org.first.finance.automation.selenium.services;
 
-import org.first.finance.automation.parcer.ChromeDriverPlus;
-import org.first.finance.automation.parcer.WebElementPlus;
+import org.first.finance.automation.selenium.ChromeDriverPlus;
+import org.first.finance.automation.selenium.WebElementPlus;
+import org.first.finance.automation.selenium.core.ScotiaDomConstants;
 import org.first.finance.core.dto.AccountDto;
 import org.first.finance.db.mysql.entity.Account;
 import org.first.finance.db.mysql.repository.AccountRepository;
@@ -15,8 +16,6 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.first.finance.automation.parcer.ScotiaDomConstants.*;
-
 @Service
 public class ScotiaBankSelenium {
     private static final Logger LOG = LoggerFactory.getLogger(ScotiaBankSelenium.class);
@@ -29,7 +28,7 @@ public class ScotiaBankSelenium {
         chromeDriver = ChromeDriverPlus.getInstance();
         try {
             login();
-            List<WebElementPlus> existingAccountTypesList = chromeDriver.conditionalGetElements(ACCOUNT_TYPES);
+            List<WebElementPlus> existingAccountTypesList = chromeDriver.conditionalGetElements(ScotiaDomConstants.ACCOUNT_TYPES);
             List<AccountDto> uiAccounts =  existingAccountTypesList.stream().flatMap(at -> getUiAccounts(at.getText(), at).stream()).toList();
             LOG.info("Starting process {} accounts", uiAccounts.size());
             uiAccounts.forEach(this::processAccount);
@@ -62,7 +61,7 @@ public class ScotiaBankSelenium {
     }
 
     private List<AccountDto> getUiAccounts(String accountType, WebElementPlus accountGroup) {
-        return accountGroup.findElementsPlus(ACCOUNTS)
+        return accountGroup.findElementsPlus(ScotiaDomConstants.ACCOUNTS)
                 .stream()
                 .map(ag -> getInfoFromUiAccount(accountType, ag))
                 .collect(Collectors.toList());
@@ -70,11 +69,11 @@ public class ScotiaBankSelenium {
 
     private AccountDto getInfoFromUiAccount(String accountType, WebElementPlus uiAccount) {
         AccountDto accountDto = new AccountDto();
-        WebElementPlus titleElement = uiAccount.findElementPlus(ACCOUNT_TITLE);
+        WebElementPlus titleElement = uiAccount.findElementPlus(ScotiaDomConstants.ACCOUNT_TITLE);
         accountDto.setLink(titleElement.getAttribute("href"));
         accountDto.setName(titleElement.getText());
         accountDto.setAccountType(accountType);
-        String accountBalance = uiAccount.findElementPlus(ACCOUNT_BALANCE).getText();
+        String accountBalance = uiAccount.findElementPlus(ScotiaDomConstants.ACCOUNT_BALANCE).getText();
         accountDto.setAmount(new BigDecimal(accountBalance.replaceAll("[\\$, \\,]", "")));
         return accountDto;
     }

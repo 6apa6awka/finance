@@ -1,7 +1,8 @@
-package org.first.finance.automation.parcer.services;
+package org.first.finance.automation.selenium.services;
 
-import org.first.finance.automation.parcer.ChromeDriverPlus;
-import org.first.finance.automation.parcer.WebElementPlus;
+import org.first.finance.automation.selenium.ChromeDriverPlus;
+import org.first.finance.automation.selenium.WebElementPlus;
+import org.first.finance.automation.selenium.utils.CommonUtils;
 import org.first.finance.core.dto.AccountDto;
 import org.first.finance.db.mysql.entity.Account;
 import org.first.finance.db.mysql.entity.Asset;
@@ -13,7 +14,6 @@ import org.openqa.selenium.support.ui.Select;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -23,8 +23,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-
-import static org.first.finance.automation.parcer.utils.CommonUtils.sleep;
 
 //@Service
 @ConfigurationProperties(prefix = "saving")
@@ -53,7 +51,7 @@ public class ScotiaSavingAccountSeleniumParser extends ScotiaAccountSeleniumPars
                 asset = getAssetRepository().save(asset);
             }
             periodButton.click();
-            sleep(1000);
+            CommonUtils.sleep(1000);
             BigDecimal assetCurrentAmount = new BigDecimal(period.findElementPlus(By.className("velocity-savings-periods__period-balance")).getText().replaceAll("[\\$, \\,]", ""));
             if (assetCurrentAmount.compareTo(asset.getAmount()) == 0) {
                 continue;
@@ -62,7 +60,7 @@ public class ScotiaSavingAccountSeleniumParser extends ScotiaAccountSeleniumPars
             List<WebElement> dateOptions = select.getOptions();
             for (int i = 0; i < dateOptions.size(); i++) {
                 select.selectByIndex(i);
-                sleep(3000);
+                CommonUtils.sleep(3000);
                 List<WebElementPlus> transactions = chromeDriver.conditionalGetElement(By.className("velocity-transcation-history-table-container"))
                         .findElementsPlus(By.xpath("//tbody/tr"));
                 if (transactions.size() == 0 || "No transactions available".equals(transactions.get(0).getText())) {
@@ -89,7 +87,7 @@ public class ScotiaSavingAccountSeleniumParser extends ScotiaAccountSeleniumPars
                 for (Transaction transactionToProcess : transactionsToProcess) {
                     int count = Collections.frequency(transactionsToProcess, transactionToProcess);
                     while (count > Collections.frequency(dbTransactions, transactionToProcess)) {
-                        dbTransactions.add(createTransaction(transactionToProcess));
+                        //dbTransactions.add(createTransaction(transactionToProcess));
                         LOG.info("New transaction added to {} account, {}", uiAccount.getName(), transactionToProcess);
                     }
                 }

@@ -1,4 +1,4 @@
-package org.first.finance.automation.parcer.utils;
+package org.first.finance.automation.selenium.utils;
 
 import com.google.common.base.Strings;
 import org.openqa.selenium.Cookie;

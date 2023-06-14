@@ -1,12 +1,10 @@
-package org.first.finance.automation.parcer.services;
+package org.first.finance.automation.selenium.services;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.HashMap;

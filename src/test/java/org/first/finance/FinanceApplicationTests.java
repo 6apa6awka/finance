@@ -2,10 +2,9 @@ package org.first.finance;
 
 import org.first.finance.automation.BalanceAdvisor;
 import org.first.finance.automation.ServiceProviderUpdater;
-import org.first.finance.automation.parcer.services.ScotiaBankSelenium;
+import org.first.finance.automation.selenium.services.ScotiaBankSelenium;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest

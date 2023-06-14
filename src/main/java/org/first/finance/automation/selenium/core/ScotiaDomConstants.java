@@ -1,4 +1,4 @@
-package org.first.finance.automation.parcer;
+package org.first.finance.automation.selenium.core;
 
 import org.openqa.selenium.By;
 

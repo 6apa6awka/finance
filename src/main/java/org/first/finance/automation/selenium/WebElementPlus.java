@@ -1,4 +1,4 @@
-package org.first.finance.automation.parcer;
+package org.first.finance.automation.selenium;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -7,11 +7,11 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-import static org.first.finance.automation.parcer.utils.CommonUtils.sleep;
+import static org.first.finance.automation.selenium.utils.CommonUtils.sleep;
 
 public class WebElementPlus implements WebElement {
-    private WebElement delegate;
-    private ChromeDriverPlus chromeDriver;
+    private final WebElement delegate;
+    private final ChromeDriverPlus chromeDriver;
     public WebElementPlus(WebElement webElement, ChromeDriverPlus chromeDriver) {
         delegate = webElement;
         this.chromeDriver = chromeDriver;

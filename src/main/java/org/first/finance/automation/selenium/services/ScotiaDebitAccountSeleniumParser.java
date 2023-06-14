@@ -1,19 +1,16 @@
-package org.first.finance.automation.parcer.services;
+package org.first.finance.automation.selenium.services;
 
-import org.first.finance.automation.parcer.ChromeDriverPlus;
-import org.first.finance.automation.parcer.WebElementPlus;
+import org.first.finance.automation.selenium.ChromeDriverPlus;
+import org.first.finance.automation.selenium.WebElementPlus;
 import org.first.finance.core.dto.AccountDto;
 import org.first.finance.db.mysql.entity.Account;
 import org.first.finance.db.mysql.entity.Transaction;
 import org.first.finance.db.mysql.entity.TransactionType;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -72,7 +69,7 @@ public class ScotiaDebitAccountSeleniumParser extends ScotiaCardAccountSeleniumP
         for (Transaction transactionToProcess : transactionsToProcess) {
             int count = Collections.frequency(transactionsToProcess, transactionToProcess);
             while (count > Collections.frequency(dbTransactions, transactionToProcess)) {
-                dbTransactions.add(createTransaction(transactionToProcess));
+                //dbTransactions.add(createTransaction(transactionToProcess));
                 LOG.info("New transaction added to {} account, {}", account.getName(), transactionToProcess);
             }
         }

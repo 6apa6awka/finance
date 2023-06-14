@@ -1,44 +1,50 @@
-package org.first.finance.automation.parcer.services;
+package org.first.finance.automation.selenium.services;
 
 import jakarta.transaction.Transactional;
-import org.first.finance.automation.parcer.ChromeDriverPlus;
-import org.first.finance.automation.parcer.SeleniumPath;
+import org.first.finance.automation.selenium.ChromeDriverPlus;
+import org.first.finance.automation.selenium.core.SeleniumPath;
+import org.first.finance.automation.selenium.core.UITransactionField;
 import org.first.finance.core.dto.AccountDto;
+import org.first.finance.core.dto.TransactionDto;
 import org.first.finance.core.services.ServiceProviderService;
 import org.first.finance.db.mysql.entity.Account;
 import org.first.finance.db.mysql.entity.AccountType;
-import org.first.finance.db.mysql.entity.Asset;
 import org.first.finance.db.mysql.entity.ServiceProvider;
-import org.first.finance.db.mysql.entity.Transaction;
+import org.first.finance.db.mysql.entity.TransactionType;
 import org.first.finance.db.mysql.repository.AccountRepository;
 import org.first.finance.db.mysql.repository.AssetRepository;
 import org.first.finance.db.mysql.repository.ServiceProviderRepository;
 import org.first.finance.db.mysql.repository.TransactionRepository;
 import org.jetbrains.annotations.NotNull;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.ConfigurableEnvironment;
-import org.springframework.core.env.Environment;
-import org.springframework.core.env.PropertySource;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
 
-import static org.first.finance.automation.parcer.utils.CommonUtils.sleep;
+import static org.first.finance.automation.selenium.core.UITransactionField.CATEGORY;
+import static org.first.finance.automation.selenium.core.UITransactionField.CREDIT;
+import static org.first.finance.automation.selenium.core.UITransactionField.DEBIT;
+import static org.first.finance.automation.selenium.core.UITransactionField.DESCRIPTION;
+import static org.first.finance.automation.selenium.utils.CommonUtils.sleep;
 
 @Service
 public abstract class ScotiaAccountSeleniumParser {
     private static final Logger LOG = LoggerFactory.getLogger(ScotiaAccountSeleniumParser.class);
+    private static final String AMOUNT_SIGNS_TO_REMOVE = "[$ ,]";
     private ServiceProviderRepository serviceProviderRepository;
     private AccountRepository accountRepository;
     private TransactionRepository transactionRepository;
     private AssetRepository assetRepository;
-    private Environment environment;
     private ServiceProviderService serviceProviderService;
-    private static final String PROPERTY_FILE_NAME_TEMPLATE = "class path resource [selenium/path/%s.properties]";
+    private SeleniumPathService seleniumPathService;
     public void processAccountIfApplicable(AccountDto uiAccount, Account dbAccount, ChromeDriverPlus chromeDriver) {
         if (!uiAccount.getAccountType().equals(getApplicableAccountType())) {
             return;
@@ -68,27 +74,6 @@ public abstract class ScotiaAccountSeleniumParser {
         return BigDecimal.ZERO;
     }
 
-    public Transaction createTransaction(Transaction transaction) {
-        BigDecimal transactionAmount = transaction.getAmount();
-        if (!transaction.isDebit()) {
-            transactionAmount = transactionAmount.negate();
-        }
-        Account account = accountRepository.findById(transaction.getAccount().getId())
-                .orElseThrow();
-        account.setAmount(account.getAmount().add(transactionAmount));
-        accountRepository.save(account);
-        if (transaction.getAsset() != null) {
-            Asset asset = assetRepository.findById(transaction.getAsset().getId())
-                    .orElseThrow();
-            asset.setAmount(asset.getAmount().add(transactionAmount));
-            assetRepository.save(asset);
-        }
-        if (transaction.getServiceProvider() != null) {
-            serviceProviderRepository.save(transaction.getServiceProvider());
-        }
-        return transactionRepository.save(transaction);
-    }
-
     @Transactional
     protected ServiceProvider resolveServiceProvider(String name, String category) {
         return serviceProviderService.findByText(name);
@@ -99,17 +84,57 @@ public abstract class ScotiaAccountSeleniumParser {
         sleep(5000);
     }
 
-    public String getPath(SeleniumPath seleniumPath) {
-        PropertySource<?> propertySource = ((ConfigurableEnvironment) environment).getPropertySources()
-                .get(String.format(PROPERTY_FILE_NAME_TEMPLATE, getPropertyFileName()));
-        return seleniumPath.get(propertySource);
+    public By getPath(SeleniumPath seleniumPath) {
+        return getSeleniumPathService().getPath(seleniumPath, getScotiaAccountName());
     }
 
-    private String getPropertyFileName() {
+    public String getScotiaAccountName() {
         Pattern pattern = Pattern.compile("Scotia([A-z]+)AccountSeleniumParser");
         MatchResult match = pattern.matcher(getClass().getSimpleName()).results().findFirst().orElseThrow();
         return match.group(1).toLowerCase();
     }
+
+    protected UITransactionField[] getUITransactionFieldsInOrder() {
+        return new UITransactionField[] {
+                CATEGORY,
+                UITransactionField.DESCRIPTION,
+                UITransactionField.CREDIT,
+                UITransactionField.DEBIT};
+    }
+
+    protected TransactionDto collectTransactionData(List<WebElement> uiTransactionFields) {
+        TransactionDto transactionDto = new TransactionDto();
+        String category = findTextForField(uiTransactionFields, CATEGORY);
+        String description = findTextForField(uiTransactionFields, DESCRIPTION);
+        String creditAmount = findTextForField(uiTransactionFields, CREDIT);
+        String debitAmount = findTextForField(uiTransactionFields, DEBIT);
+        String amount;
+        transactionDto.setCategory(category);
+        transactionDto.setDescription(description);
+        if (ObjectUtils.isEmpty(creditAmount)) {
+            amount = debitAmount;
+            transactionDto.setType(TransactionType.DEBIT);
+        } else {
+            amount = creditAmount;
+            transactionDto.setType(TransactionType.CREDIT);
+        }
+        transactionDto.setAmount(parseAmount(amount));
+        transactionDto.setServiceProviderId(resolveServiceProvider(description, category).getId());
+        return transactionDto;
+    }
+
+    protected BigDecimal parseAmount(String amount) {
+        return new BigDecimal(amount.replaceAll(AMOUNT_SIGNS_TO_REMOVE, ""));
+    }
+
+    private String findTextForField(List<WebElement> uiTransactionFields, UITransactionField uiTransactionField) {
+        return uiTransactionFields.get(getFieldIndex(uiTransactionField)).getText();
+    }
+
+    private int getFieldIndex(UITransactionField uiTransactionField) {
+        return uiTransactionField.findPositionIn(getUITransactionFieldsInOrder());
+    }
+
     public AccountRepository getAccountRepository() {
         return accountRepository;
     }
@@ -147,12 +172,16 @@ public abstract class ScotiaAccountSeleniumParser {
     }
 
     @Autowired
-    public void setEnvironment(Environment environment) {
-        this.environment = environment;
+    public void setServiceProviderResolver(ServiceProviderService serviceProviderService) {
+        this.serviceProviderService = serviceProviderService;
+    }
+
+    public SeleniumPathService getSeleniumPathService() {
+        return seleniumPathService;
     }
 
     @Autowired
-    public void setServiceProviderResolver(ServiceProviderService serviceProviderService) {
-        this.serviceProviderService = serviceProviderService;
+    public void setSeleniumPathService(SeleniumPathService seleniumPathService) {
+        this.seleniumPathService = seleniumPathService;
     }
 }

@@ -1,6 +1,6 @@
 package org.first.finance.automation;
 
-import org.first.finance.automation.parcer.services.ScotiaBankSelenium;
+import org.first.finance.automation.selenium.services.ScotiaBankSelenium;
 import org.first.finance.db.mysql.entity.Account;
 import org.first.finance.db.mysql.repository.AccountRepository;
 import org.first.finance.sheets.service.GoogleSheetsProcessingService;
