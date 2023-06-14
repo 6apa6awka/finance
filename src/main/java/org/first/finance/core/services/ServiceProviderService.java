@@ -28,7 +28,7 @@ public class ServiceProviderService {
 
     public ServiceProvider findByText(String textToResolve) {
         ServiceProviderAlias serviceProviderAlias = serviceProviderAliasRepository.findFirstByAlias(textToResolve);
-        ServiceProvider result = null;
+        ServiceProvider result;
         if (serviceProviderAlias != null) {
             result = serviceProviderAlias.getServiceProvider();
             LOG.debug("Found service provider {} for alias {}", result.getName(), serviceProviderAlias.getValue());
