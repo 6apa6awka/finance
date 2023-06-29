@@ -4,9 +4,12 @@ import jakarta.transaction.Transactional;
 import org.first.finance.automation.selenium.ChromeDriverPlus;
 import org.first.finance.automation.selenium.core.SeleniumPath;
 import org.first.finance.automation.selenium.core.UITransactionField;
+import org.first.finance.automation.selenium.utils.AmountUtils;
+import org.first.finance.automation.selenium.utils.DateUtils;
 import org.first.finance.core.dto.AccountDto;
 import org.first.finance.core.dto.TransactionDto;
 import org.first.finance.core.services.ServiceProviderService;
+import org.first.finance.core.services.TransactionService;
 import org.first.finance.db.mysql.entity.Account;
 import org.first.finance.db.mysql.entity.AccountType;
 import org.first.finance.db.mysql.entity.ServiceProvider;
@@ -31,6 +34,7 @@ import java.util.regex.Pattern;
 
 import static org.first.finance.automation.selenium.core.UITransactionField.CATEGORY;
 import static org.first.finance.automation.selenium.core.UITransactionField.CREDIT;
+import static org.first.finance.automation.selenium.core.UITransactionField.DATE;
 import static org.first.finance.automation.selenium.core.UITransactionField.DEBIT;
 import static org.first.finance.automation.selenium.core.UITransactionField.DESCRIPTION;
 import static org.first.finance.automation.selenium.utils.CommonUtils.sleep;
@@ -38,13 +42,13 @@ import static org.first.finance.automation.selenium.utils.CommonUtils.sleep;
 @Service
 public abstract class ScotiaAccountSeleniumParser {
     private static final Logger LOG = LoggerFactory.getLogger(ScotiaAccountSeleniumParser.class);
-    private static final String AMOUNT_SIGNS_TO_REMOVE = "[$ ,]";
     private ServiceProviderRepository serviceProviderRepository;
     private AccountRepository accountRepository;
     private TransactionRepository transactionRepository;
     private AssetRepository assetRepository;
     private ServiceProviderService serviceProviderService;
     private SeleniumPathService seleniumPathService;
+    private TransactionService transactionService;
     public void processAccountIfApplicable(AccountDto uiAccount, Account dbAccount, ChromeDriverPlus chromeDriver) {
         if (!uiAccount.getAccountType().equals(getApplicableAccountType())) {
             return;
@@ -94,16 +98,15 @@ public abstract class ScotiaAccountSeleniumParser {
         return match.group(1).toLowerCase();
     }
 
-    protected UITransactionField[] getUITransactionFieldsInOrder() {
-        return new UITransactionField[] {
-                CATEGORY,
-                UITransactionField.DESCRIPTION,
-                UITransactionField.CREDIT,
-                UITransactionField.DEBIT};
-    }
+    protected abstract UITransactionField[] getUITransactionFieldsInOrder();
 
-    protected TransactionDto collectTransactionData(List<WebElement> uiTransactionFields) {
+    protected TransactionDto collectTransactionData(WebElement uiTransaction) {
+        List<WebElement> uiTransactionFields = uiTransaction.findElements(getPath(SeleniumPath.TRANSACTIONS_LIST_FIELDS));
+        if (uiTransactionFields.isEmpty()) {
+            return null;
+        }
         TransactionDto transactionDto = new TransactionDto();
+        String date = findTextForField(uiTransactionFields, DATE);
         String category = findTextForField(uiTransactionFields, CATEGORY);
         String description = findTextForField(uiTransactionFields, DESCRIPTION);
         String creditAmount = findTextForField(uiTransactionFields, CREDIT);
@@ -118,17 +121,19 @@ public abstract class ScotiaAccountSeleniumParser {
             amount = creditAmount;
             transactionDto.setType(TransactionType.CREDIT);
         }
-        transactionDto.setAmount(parseAmount(amount));
+        if (date != null) {
+            transactionDto.setTransactionDate(DateUtils.toLocalDate(date).toEpochDay());
+        }
+        if (amount != null) {
+            transactionDto.setAmount(AmountUtils.parseAmount(amount));
+        }
         transactionDto.setServiceProviderId(resolveServiceProvider(description, category).getId());
         return transactionDto;
     }
 
-    protected BigDecimal parseAmount(String amount) {
-        return new BigDecimal(amount.replaceAll(AMOUNT_SIGNS_TO_REMOVE, ""));
-    }
-
-    private String findTextForField(List<WebElement> uiTransactionFields, UITransactionField uiTransactionField) {
-        return uiTransactionFields.get(getFieldIndex(uiTransactionField)).getText();
+    protected String findTextForField(List<? extends WebElement> uiTransactionFields, UITransactionField uiTransactionField) {
+        int index = getFieldIndex(uiTransactionField);
+        return index == -1 ? null : uiTransactionFields.get(index).getText();
     }
 
     private int getFieldIndex(UITransactionField uiTransactionField) {
@@ -183,5 +188,14 @@ public abstract class ScotiaAccountSeleniumParser {
     @Autowired
     public void setSeleniumPathService(SeleniumPathService seleniumPathService) {
         this.seleniumPathService = seleniumPathService;
+    }
+
+    public TransactionService getTransactionService() {
+        return transactionService;
+    }
+
+    @Autowired
+    public void setTransactionService(TransactionService transactionService) {
+        this.transactionService = transactionService;
     }
 }

@@ -1,14 +1,10 @@
 package org.first.finance.automation.selenium.core;
 
 public enum UITransactionField {
-    CREDIT, DEBIT, DESCRIPTION, CATEGORY;
+    CREDIT, DEBIT, DESCRIPTION, CATEGORY, DATE;
 
     public int findPositionIn(UITransactionField[] uiTransactionFieldsInOrder) {
-        int order = getOrder(uiTransactionFieldsInOrder);
-        if (order == -1) {
-            throw new IllegalArgumentException("Check fields order is correct");
-        }
-        return order;
+        return getOrder(uiTransactionFieldsInOrder);
     }
 
     private int getOrder(UITransactionField[] fieldsOrder) {

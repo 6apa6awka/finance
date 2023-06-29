@@ -8,7 +8,9 @@ public enum SeleniumPath {
     TRANSACTION_FILTER_SEARCH("transactions.filter.search", SeleniumPath.SeleniumPathType.XPATH),
     TRANSACTIONS_LIST("transactions.list", SeleniumPath.SeleniumPathType.XPATH),
     TRANSACTIONS_LIST_FIELDS("transactions.list.fields", SeleniumPath.SeleniumPathType.TAG_NAME),
-    TRANSACTIONS_LIST_FIELD_DATE("transactions.list.field.date", SeleniumPath.SeleniumPathType.TAG_NAME);
+    TRANSACTIONS_LIST_FIELD_DATE("transactions.list.field.date", SeleniumPath.SeleniumPathType.TAG_NAME),
+    TRANSACTIONS_TOTAL_CREDIT("transactions.total.credit", SeleniumPath.SeleniumPathType.XPATH),
+    TRANSACTIONS_TOTAL_DEBIT("transactions.total.debit", SeleniumPath.SeleniumPathType.XPATH);
 
     private final String propertyName;
     private final SeleniumPathType type;

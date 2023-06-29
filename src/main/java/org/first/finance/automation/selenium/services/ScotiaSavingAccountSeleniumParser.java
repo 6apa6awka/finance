@@ -2,6 +2,7 @@ package org.first.finance.automation.selenium.services;
 
 import org.first.finance.automation.selenium.ChromeDriverPlus;
 import org.first.finance.automation.selenium.WebElementPlus;
+import org.first.finance.automation.selenium.core.UITransactionField;
 import org.first.finance.automation.selenium.utils.CommonUtils;
 import org.first.finance.core.dto.AccountDto;
 import org.first.finance.db.mysql.entity.Account;
@@ -105,5 +106,10 @@ public class ScotiaSavingAccountSeleniumParser extends ScotiaAccountSeleniumPars
     @Override
     public String getApplicableAccountType() {
         return "Saving";
+    }
+
+    @Override
+    protected UITransactionField[] getUITransactionFieldsInOrder() {
+        return new UITransactionField[0];
     }
 }
