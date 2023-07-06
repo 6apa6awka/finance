@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface TransactionRepository extends ListCrudRepository<Transaction, Long> {
     List<Transaction> findTransactionsByAccount_IdAndTransactionDateEquals(Long id, long currentDate);
-    List<Transaction> findTransactionsByAccount_IdAndAsset_IdAndTransactionDateBetween(Long accountId, Long assetId, long startDate, long endDate);
+    List<Transaction> findTransactionsByAccount_IdAndAsset_IdAndTransactionDateEquals(Long accountId, Long assetId, long transactionDate);
     List<Transaction> findByServiceProvider(ServiceProvider serviceProvider);
+    List<Transaction> findByAccount_IdOrderByTransactionDateDesc(Long accountId);
 }

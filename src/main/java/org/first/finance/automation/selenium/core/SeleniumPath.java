@@ -10,7 +10,17 @@ public enum SeleniumPath {
     TRANSACTIONS_LIST_FIELDS("transactions.list.fields", SeleniumPath.SeleniumPathType.TAG_NAME),
     TRANSACTIONS_LIST_FIELD_DATE("transactions.list.field.date", SeleniumPath.SeleniumPathType.TAG_NAME),
     TRANSACTIONS_TOTAL_CREDIT("transactions.total.credit", SeleniumPath.SeleniumPathType.XPATH),
-    TRANSACTIONS_TOTAL_DEBIT("transactions.total.debit", SeleniumPath.SeleniumPathType.XPATH);
+    TRANSACTIONS_TOTAL_DEBIT("transactions.total.debit", SeleniumPath.SeleniumPathType.XPATH),
+    PERIODS("periods", SeleniumPath.SeleniumPathType.XPATH),
+    PERIODS_DURATION("periods.duration", SeleniumPathType.CLASS_NAME),
+    PERIODS_INTEREST("periods.interest", SeleniumPathType.CLASS_NAME),
+    PERIODS_PROGRESS("periods.progress", SeleniumPathType.CLASS_NAME),
+    PERIODS_PROGRESS_BUTTON("periods.progress.button", SeleniumPathType.CLASS_NAME),
+    PERIODS_GOAL("periods.goal", SeleniumPathType.CLASS_NAME),
+    PERIODS_BALANCE("periods.balance", SeleniumPathType.CLASS_NAME),
+    PERIODS_TRANSACTIONS("periods.transactions", SeleniumPathType.XPATH),
+    PERIODS_TRANSACTIONS_CONTAINER("periods.transactions.container", SeleniumPathType.CLASS_NAME),
+    PERIODS_TRANSACTIONS_PERIOD("periods.transactions.period", SeleniumPathType.ID);
 
     private final String propertyName;
     private final SeleniumPathType type;
@@ -36,6 +46,9 @@ public enum SeleniumPath {
             case TAG_NAME -> {
                 return By.tagName(path);
             }
+            case CLASS_NAME -> {
+                return By.className(path);
+            }
             default -> {
                 return null;
             }
@@ -43,6 +56,6 @@ public enum SeleniumPath {
     }
 
     private enum SeleniumPathType {
-        XPATH, ID, TAG_NAME
+        XPATH, ID, TAG_NAME, CLASS_NAME
     }
 }

@@ -58,6 +58,19 @@ public class ServiceProviderService {
         return null;
     }
 
+    public ServiceProvider createServiceProvider(String name) {
+        ServiceProvider serviceProvider = new ServiceProvider();
+        serviceProvider.setApproved(false);
+        serviceProvider.setName(name);
+        serviceProvider = serviceProviderRepository.save(serviceProvider);
+        ServiceProviderAlias serviceProviderAlias = new ServiceProviderAlias();
+        serviceProviderAlias.setValue(name);
+        serviceProviderAlias.setServiceProvider(serviceProvider);
+        serviceProviderAlias.setType(ServiceProviderAliasType.ALIAS);
+        serviceProviderAliasRepository.save(serviceProviderAlias);
+        return serviceProvider;
+    }
+
     public void updateServiceProvidersThatApplicable(ServiceProviderAlias serviceProviderAlias) {
         List<ServiceProvider> serviceProviderList = serviceProviderRepository
                 .findByNameContainingAndIsApprovedIsFalse(serviceProviderAlias.getValue());

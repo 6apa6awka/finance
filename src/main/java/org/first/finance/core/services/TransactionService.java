@@ -15,8 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.stream.Collectors;
 
 @Service
 public class TransactionService {
@@ -27,12 +29,17 @@ public class TransactionService {
     private ServiceProviderRepository serviceProviderRepository;
 
     @Transactional
-    public void processTransactions(Collection<TransactionDto> transactionsToProcess, Account account, long currentDate) {
+    public void processTransactions(Collection<TransactionDto> transactionsToProcess, Account account, Long assetId, long currentDate) {
         Collection<Transaction> transactions = transactionsToProcess.stream()
                 .map(this::convertDtoToEntity)
                 .peek(transaction -> transaction.setAccount(account))
                 .toList();
-        Collection<Transaction> dbTransactions = transactionRepository.findTransactionsByAccount_IdAndTransactionDateEquals(account.getId(), currentDate);
+        Collection<Transaction> dbTransactions;
+        if (assetId != null) {
+            dbTransactions = transactionRepository.findTransactionsByAccount_IdAndAsset_IdAndTransactionDateEquals(account.getId(), assetId, currentDate);
+        } else {
+            dbTransactions = transactionRepository.findTransactionsByAccount_IdAndTransactionDateEquals(account.getId(), currentDate);
+        }
         for (Transaction transactionToProcess : transactions) {
             int count = Collections.frequency(transactions, transactionToProcess);
             while (count > Collections.frequency(dbTransactions, transactionToProcess)) {
@@ -40,6 +47,26 @@ public class TransactionService {
                 LOG.info("New transaction added to {} account, {}", account.getName(), transactionToProcess);
             }
         }
+    }
+
+    public void compareTransactionsForAccount(Collection<TransactionDto> uiTransactionsDto, Account account) {
+        Collection<Transaction> uiTransactions = uiTransactionsDto.stream()
+                .map(this::convertDtoToEntity)
+                .peek(transaction -> transaction.setAccount(account))
+                .collect(Collectors.toCollection(ArrayList::new));
+
+        Collection<Transaction> dbTransactions = transactionRepository.findByAccount_IdOrderByTransactionDateDesc(account.getId());
+        uiTransactions.forEach(dbTransactions::remove);
+        dbTransactions.forEach(System.out::println);
+        System.out.println("-------------------------------------------------------------");
+        dbTransactions = transactionRepository.findByAccount_IdOrderByTransactionDateDesc(account.getId());
+        dbTransactions.forEach(uiTransactions::remove);
+        uiTransactions.forEach(System.out::println);
+    }
+
+    @Transactional
+    public void processTransactions(Collection<TransactionDto> transactionsToProcess, Account account, long currentDate) {
+        processTransactions(transactionsToProcess, account, null, currentDate);
     }
 
     public Transaction createTransaction(Transaction transaction) {
@@ -67,6 +94,9 @@ public class TransactionService {
         Transaction transaction = new Transaction();
         transaction.setAccount(accountRepository.findById(transactionDto.getAccountId()).orElseThrow());
         transaction.setServiceProvider(serviceProviderRepository.findById(transactionDto.getServiceProviderId()).orElseThrow());
+        if (transactionDto.getAssetId() != null) {
+            transaction.setAsset(assetRepository.findById(transactionDto.getAssetId()).orElseThrow());
+        }
         transaction.setCreationTime(System.currentTimeMillis());
         transaction.setType(transactionDto.getType());
         transaction.setDescription(transactionDto.getDescription());

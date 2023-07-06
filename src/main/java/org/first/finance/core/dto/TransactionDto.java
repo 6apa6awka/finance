@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 public class TransactionDto {
     private Long accountId;
     private Long serviceProviderId;
+    private Long assetId;
     private long transactionDate;
     private String description;
     private String category;
@@ -26,6 +27,14 @@ public class TransactionDto {
 
     public void setServiceProviderId(Long serviceProviderId) {
         this.serviceProviderId = serviceProviderId;
+    }
+
+    public Long getAssetId() {
+        return assetId;
+    }
+
+    public void setAssetId(Long assetId) {
+        this.assetId = assetId;
     }
 
     public void setTransactionDate(long transactionDate) {

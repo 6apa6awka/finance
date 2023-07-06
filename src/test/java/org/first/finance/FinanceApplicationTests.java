@@ -1,5 +1,6 @@
 package org.first.finance;
 
+import org.first.finance.automation.AccountComparisonService;
 import org.first.finance.automation.BalanceAdvisor;
 import org.first.finance.automation.ServiceProviderUpdater;
 import org.first.finance.automation.selenium.services.ScotiaBankSelenium;
@@ -13,6 +14,7 @@ class FinanceApplicationTests {
 	private ServiceProviderUpdater serviceProviderUpdater;
 	private BalanceAdvisor balanceAdvisor;
 	private ScotiaBankSelenium scotiaBankSelenium;
+	private AccountComparisonService accountComparisonService;
 
 	@Test
 	void startServiceProviderUpdate() {
@@ -29,6 +31,11 @@ class FinanceApplicationTests {
 		scotiaBankSelenium.start();
 	}
 
+	@Test
+	void startAccountComparison() {
+		accountComparisonService.compareTransactionsForAccount();
+	}
+
 
 	@Autowired
 	public void setServiceProviderUpdater(ServiceProviderUpdater serviceProviderUpdater) {
@@ -43,5 +50,10 @@ class FinanceApplicationTests {
 	@Autowired
 	public void setScotiaBankSelenium(ScotiaBankSelenium scotiaBankSelenium) {
 		this.scotiaBankSelenium = scotiaBankSelenium;
+	}
+
+	@Autowired
+	public void setAccountComparisonService(AccountComparisonService accountComparisonService) {
+		this.accountComparisonService = accountComparisonService;
 	}
 }

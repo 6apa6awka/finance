@@ -3,16 +3,15 @@ package org.first.finance.automation.selenium.services;
 import org.first.finance.automation.selenium.ChromeDriverPlus;
 import org.first.finance.automation.selenium.WebElementPlus;
 import org.first.finance.automation.selenium.core.ScotiaDomConstants;
+import org.first.finance.automation.selenium.utils.AmountUtils;
 import org.first.finance.core.dto.AccountDto;
 import org.first.finance.db.mysql.entity.Account;
 import org.first.finance.db.mysql.repository.AccountRepository;
-import org.openqa.selenium.By;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,6 +40,19 @@ public class ScotiaBankSelenium {
         chromeDriver.close();
         chromeDriver.quit();
         LOG.info("Parsing job finished");
+    }
+
+    public void getAllTransactionsForAccount(String account) {
+        chromeDriver = ChromeDriverPlus.getInstance();
+        login();
+        AccountDto accountDto = chromeDriver.conditionalGetElements(ScotiaDomConstants.ACCOUNT_TYPES)
+                .stream()
+                .flatMap(at -> getUiAccounts(at.getText(), at).stream())
+                .filter(a -> account.equals(a.getName()))
+                .peek(a -> a.setAccountType("Debit"))
+                .findFirst()
+                .orElse(null);
+        accountParsers.forEach(p -> p.compareTransactionsForAccount(accountDto, chromeDriver));
     }
 
     private void login() {
@@ -74,7 +86,7 @@ public class ScotiaBankSelenium {
         accountDto.setName(titleElement.getText());
         accountDto.setAccountType(accountType);
         String accountBalance = uiAccount.findElementPlus(ScotiaDomConstants.ACCOUNT_BALANCE).getText();
-        accountDto.setAmount(new BigDecimal(accountBalance.replaceAll("[\\$, \\,]", "")));
+        accountDto.setAmount(AmountUtils.parseAmount(accountBalance));
         return accountDto;
     }
 
@@ -99,16 +111,6 @@ public class ScotiaBankSelenium {
             return;
         }
         accountParsers.forEach(parser -> parser.processAccountIfApplicable(uiAccount, dbAccount, chromeDriver));
-    }
-
-    private boolean isAccountUpToDate(Account account, By pathToCurrentAmount) {
-        BigDecimal currentAmount = new BigDecimal(chromeDriver.getElement(pathToCurrentAmount)
-                .getText().replaceAll("[\\$, \\,]", ""));
-        if (currentAmount.compareTo(account.getAmount()) == 0) {
-            LOG.info("{} account is up to date", account.getName());
-            return true;
-        }
-        return false;
     }
 
     @Autowired

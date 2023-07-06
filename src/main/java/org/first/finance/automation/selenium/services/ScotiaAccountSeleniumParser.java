@@ -59,6 +59,10 @@ public abstract class ScotiaAccountSeleniumParser {
         }
         processAccount(uiAccount, dbAccount, chromeDriver);
     }
+
+    public void compareTransactionsForAccount(AccountDto uiAccount, ChromeDriverPlus chromeDriver) {
+        // do nothing
+    }
     public abstract void processAccount(AccountDto uiAccount, Account dbAccount, ChromeDriverPlus chromeDriver);
     public abstract String getApplicableAccountType();
 
@@ -79,8 +83,15 @@ public abstract class ScotiaAccountSeleniumParser {
     }
 
     @Transactional
-    protected ServiceProvider resolveServiceProvider(String name, String category) {
-        return serviceProviderService.findByText(name);
+    public ServiceProvider resolveServiceProvider(String name, String category) {
+        ServiceProvider serviceProvider = serviceProviderService.findByText(name);
+        if (serviceProvider == null) {
+            serviceProvider = parseFromDescription(name);
+        }
+        if (serviceProvider == null) {
+            serviceProvider = serviceProviderService.createServiceProvider(name);
+        }
+        return serviceProvider;
     }
 
     protected void loadInitialScreen(AccountDto uiAccount, ChromeDriverPlus chromeDriver) {
@@ -90,6 +101,10 @@ public abstract class ScotiaAccountSeleniumParser {
 
     public By getPath(SeleniumPath seleniumPath) {
         return getSeleniumPathService().getPath(seleniumPath, getScotiaAccountName());
+    }
+
+    protected ServiceProvider parseFromDescription(String description) {
+        return null;
     }
 
     public String getScotiaAccountName() {

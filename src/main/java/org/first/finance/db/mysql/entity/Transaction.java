@@ -1,7 +1,6 @@
 package org.first.finance.db.mysql.entity;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -48,6 +47,21 @@ public class Transaction {
     @Override
     public int hashCode() {
         return Objects.hash(type, amount, description, transactionDate, account, asset, serviceProvider);
+    }
+
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "id=" + id +
+                ", type=" + type +
+                ", amount=" + amount +
+                ", description='" + description + '\'' +
+                ", creationTime=" + creationTime +
+                ", transactionDate=" + transactionDate +
+                ", account=" + account +
+                ", asset=" + asset +
+                ", serviceProvider=" + serviceProvider +
+                '}';
     }
 
     public Long getId() {

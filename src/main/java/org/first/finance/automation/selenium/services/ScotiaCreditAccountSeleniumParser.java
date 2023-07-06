@@ -29,15 +29,6 @@ public class ScotiaCreditAccountSeleniumParser extends ScotiaCardAccountSelenium
     private ServiceProviderAliasRepository serviceProviderAliasRepository;
 
     @Override
-    public ServiceProvider resolveServiceProvider(String name, String category) {
-        ServiceProvider serviceProvider = super.resolveServiceProvider(name, category);
-        if (serviceProvider == null) {
-            serviceProvider = parseFromDescription(name);
-        }
-        return serviceProvider;
-    }
-
-    @Override
     protected TransactionDto collectTransactionData(WebElement uiTransaction) {
         TransactionDto transactionDto = super.collectTransactionData(uiTransaction);
         if (transactionDto != null) {
@@ -60,6 +51,7 @@ public class ScotiaCreditAccountSeleniumParser extends ScotiaCardAccountSelenium
         };
     }
 
+    @Override
     protected ServiceProvider parseFromDescription(String description) {
         String[] wordTokens = description.split(" ");
         String lastToken = wordTokens[wordTokens.length - 1];

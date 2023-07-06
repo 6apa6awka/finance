@@ -1,1 +1,35 @@
-Le Cracheur De Feu
+
+Customer Transfer Dr.
+INVESTMENT PURCHASE 2250.00 ServiceProvider{id=968, name='MUTUAL FUND TRANSFER', description='null', category='TRANSFER'} 1688065576565 18838 CREDIT
+Payroll Deposit
+EIS GROUP CANADA INC 3978.27 ServiceProvider{id=859, name='PAYROLL EIS', description='null', category='PAYROLL'} 1688065576569 18838 DEBIT
+Customer Transfer Dr.
+INVESTMENT PURCHASE 2250.00 ServiceProvider{id=968, name='MUTUAL FUND TRANSFER', description='null', category='TRANSFER'} 1688065576799 18824 CREDIT
+Payroll Deposit
+EIS GROUP CANADA INC 3960.98 ServiceProvider{id=859, name='PAYROLL EIS', description='null', category='PAYROLL'} 1688065576805 18824 DEBIT
+
+
+Customer Transfer Dr.
+INVESTMENT PURCHASE 2250.00 ServiceProvider{id=968, name='MUTUAL FUND TRANSFER', description='null', category='TRANSFER'} 1688065576565 18838 CREDIT
+Payroll Deposit
+EIS GROUP CANADA INC 3978.27 ServiceProvider{id=859, name='PAYROLL EIS', description='null', category='PAYROLL'} 1688065576569 18838 DEBIT
+Customer Transfer Dr.
+INVESTMENT PURCHASE 2250.00 ServiceProvider{id=968, name='MUTUAL FUND TRANSFER', description='null', category='TRANSFER'} 1688065576799 18824 CREDIT
+Payroll Deposit
+EIS GROUP CANADA INC 3960.98 ServiceProvider{id=859, name='PAYROLL EIS', description='null', category='PAYROLL'} 1688065576805 18824 DEBIT
+
+
+Customer Transfer Dr.
+PC TO 5448604214 6500.00 ServiceProvider{id=915, name='TFSA TRANSFER', description='null', category='TRANSFER'} 1688504676461 19542 CREDIT
+Customer Transfer Dr.
+31940674 30000.00 ServiceProvider{id=1102, name='Customer Transfer Dr.
+31940674', description='null', category='null'} 1688504676463 19542 CREDIT
+WITHDRAWAL
+FREE INTERAC E-TRANSFER 1550.00 ServiceProvider{id=855, name='E-TRANSFER CREDIT', description='null', category='TRANSFER'} 1688504676464 19542 CREDIT
+Children Assistance
+Suppl. fournitures scolaires 115.00 ServiceProvider{id=1053, name='Children Assistance
+Suppl. fournitures scolaires', description='null', category='null'} 1688504676465 19542 DEBIT
+Children Assistance
+Allocation famille - QC 276.75 ServiceProvider{id=881, name='CHILDREN PAYMENTS QUEBEC', description='null', category='OTHER'} 1688504676467 19542 DEBIT
+DEPOSIT
+MB-DEP 434.00 ServiceProvider{id=858, name='DEPOSIT TRANSFER', description='null', category='TRANSFER'} 1688318683037 19538 DEBIT
