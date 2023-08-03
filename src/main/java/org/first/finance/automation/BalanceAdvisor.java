@@ -1,8 +1,9 @@
 package org.first.finance.automation;
 
-import org.first.finance.automation.selenium.services.ScotiaBankSelenium;
+import jakarta.transaction.Transactional;
 import org.first.finance.db.mysql.entity.Account;
 import org.first.finance.db.mysql.repository.AccountRepository;
+import org.first.finance.db.mysql.repository.TransactionRepository;
 import org.first.finance.sheets.service.GoogleSheetsProcessingService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,21 +11,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.first.finance.sheets.core.GoogleSheetsDocument.SPENDING_CATEGORIES;
 
 @Service
 public class BalanceAdvisor {
     private AccountRepository accountRepository;
-    private ScotiaBankSelenium scotiaBankSelenium;
+    private TransactionRepository transactionRepository;
     private GoogleSheetsProcessingService googleSheetsProcessingService;
 
     private static final Logger LOG = LoggerFactory.getLogger(BalanceAdvisor.class);
     public void start() {
         LOG.info("Start processing balances");
         LOG.info("_________________________________________");
-        scotiaBankSelenium.start();
         ArrayList<ArrayList<String>> cells = googleSheetsProcessingService.read(SPENDING_CATEGORIES);
         BigDecimal currentAmount = accountRepository.findAll().stream()
                 .map(this::getAccountAmountAndLog)
@@ -53,6 +56,28 @@ public class BalanceAdvisor {
         LOG.info("Finished.");
     }
 
+    @Transactional
+    public void getCashFlowForMonthAndYear(YearMonth yearMonth) {
+        List<Object[]> result = transactionRepository.findTransactionsForYearAndMonth(yearMonth.atDay(1));
+        result.forEach(objects -> {
+            System.out.println(objects[2] + ": Spending's -- " + objects[0] + " Income -- " + objects[1]);
+        });
+    }
+
+    @Transactional
+    public void getIncomeOutcomeStatisticForPeriod(LocalDate start, LocalDate end) {
+        if (start == null) {
+            start = LocalDate.of(2000, 1, 1);
+        }
+        if (end == null) {
+            end = LocalDate.now();
+        }
+        List<Object[]> result = transactionRepository.getIncomeOutcomeStatisticForPeriod(start, end);
+        result.forEach(objects -> {
+            System.out.println(objects[2] + ": Spending's -- " + objects[0] + " Income -- " + objects[1]);
+        });
+    }
+
     private BigDecimal getAccountAmountAndLog(Account account) {
         LOG.info("Account {}, current amount is {}", account.getName(), account.getAmount());
         LOG.info("_________________________________________");
@@ -71,12 +96,12 @@ public class BalanceAdvisor {
     }
 
     @Autowired
-    public void setGoogleSheetsProcessingService(GoogleSheetsProcessingService googleSheetsProcessingService) {
-        this.googleSheetsProcessingService = googleSheetsProcessingService;
+    public void setTransactionRepository(TransactionRepository transactionRepository) {
+        this.transactionRepository = transactionRepository;
     }
 
     @Autowired
-    public void setScotiaBankSelenium(ScotiaBankSelenium scotiaBankSelenium) {
-        this.scotiaBankSelenium = scotiaBankSelenium;
+    public void setGoogleSheetsProcessingService(GoogleSheetsProcessingService googleSheetsProcessingService) {
+        this.googleSheetsProcessingService = googleSheetsProcessingService;
     }
 }

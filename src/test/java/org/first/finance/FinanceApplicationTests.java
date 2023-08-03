@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.Month;
+import java.time.YearMonth;
+
 @SpringBootTest
 class FinanceApplicationTests {
 
@@ -29,6 +32,21 @@ class FinanceApplicationTests {
 	@Test
 	void startScotiaBankSelenium() {
 		scotiaBankSelenium.start();
+	}
+
+	@Test
+	void currentMonthCashFlow() {
+		balanceAdvisor.getCashFlowForMonthAndYear(YearMonth.now());
+	}
+
+	@Test
+	void cashFlowForMonthAndYear() {
+		balanceAdvisor.getCashFlowForMonthAndYear(YearMonth.now().minusMonths(1));
+	}
+
+	@Test
+	void getIncomeOutcomeStatisticForPeriod() {
+		balanceAdvisor.getIncomeOutcomeStatisticForPeriod(null, null);
 	}
 
 	@Test

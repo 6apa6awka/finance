@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -29,16 +31,17 @@ public class TransactionService {
     private ServiceProviderRepository serviceProviderRepository;
 
     @Transactional
-    public void processTransactions(Collection<TransactionDto> transactionsToProcess, Account account, Long assetId, long currentDate) {
+    public void processTransactions(Collection<TransactionDto> transactionsToProcess, Long accountId, Long assetId, LocalDate currentDate) {
+        Account account = accountRepository.findById(accountId).orElseThrow();
         Collection<Transaction> transactions = transactionsToProcess.stream()
                 .map(this::convertDtoToEntity)
                 .peek(transaction -> transaction.setAccount(account))
                 .toList();
         Collection<Transaction> dbTransactions;
         if (assetId != null) {
-            dbTransactions = transactionRepository.findTransactionsByAccount_IdAndAsset_IdAndTransactionDateEquals(account.getId(), assetId, currentDate);
+            dbTransactions = transactionRepository.findTransactionsByAccount_IdAndAsset_IdAndTransactionDateEquals(accountId, assetId, currentDate);
         } else {
-            dbTransactions = transactionRepository.findTransactionsByAccount_IdAndTransactionDateEquals(account.getId(), currentDate);
+            dbTransactions = transactionRepository.findTransactionsByAccount_IdAndTransactionDateEquals(accountId, currentDate);
         }
         for (Transaction transactionToProcess : transactions) {
             int count = Collections.frequency(transactions, transactionToProcess);
@@ -65,8 +68,8 @@ public class TransactionService {
     }
 
     @Transactional
-    public void processTransactions(Collection<TransactionDto> transactionsToProcess, Account account, long currentDate) {
-        processTransactions(transactionsToProcess, account, null, currentDate);
+    public void processTransactions(Collection<TransactionDto> transactionsToProcess, Long accountId, LocalDate currentDate) {
+        processTransactions(transactionsToProcess, accountId, null, currentDate);
     }
 
     public Transaction createTransaction(Transaction transaction) {
@@ -97,7 +100,7 @@ public class TransactionService {
         if (transactionDto.getAssetId() != null) {
             transaction.setAsset(assetRepository.findById(transactionDto.getAssetId()).orElseThrow());
         }
-        transaction.setCreationTime(System.currentTimeMillis());
+        transaction.setCreationTime(LocalDateTime.now());
         transaction.setType(transactionDto.getType());
         transaction.setDescription(transactionDto.getDescription());
         transaction.setAmount(transactionDto.getAmount());

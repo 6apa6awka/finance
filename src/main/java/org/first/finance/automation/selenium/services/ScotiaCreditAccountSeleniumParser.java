@@ -36,7 +36,7 @@ public class ScotiaCreditAccountSeleniumParser extends ScotiaCardAccountSelenium
             if (date.isEmpty()) {
                 throw new IllegalArgumentException("Date can't be null");
             }
-            transactionDto.setTransactionDate(DateUtils.toLocalDate(date).toEpochDay());
+            transactionDto.setTransactionDate(DateUtils.toLocalDate(date));
         }
         return transactionDto;
     }

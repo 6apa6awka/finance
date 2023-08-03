@@ -3,12 +3,13 @@ package org.first.finance.core.dto;
 import org.first.finance.db.mysql.entity.TransactionType;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 public class TransactionDto {
     private Long accountId;
     private Long serviceProviderId;
     private Long assetId;
-    private long transactionDate;
+    private LocalDate transactionDate;
     private String description;
     private String category;
     private BigDecimal amount;
@@ -37,7 +38,7 @@ public class TransactionDto {
         this.assetId = assetId;
     }
 
-    public void setTransactionDate(long transactionDate) {
+    public void setTransactionDate(LocalDate transactionDate) {
         this.transactionDate = transactionDate;
     }
 
@@ -57,7 +58,7 @@ public class TransactionDto {
         return accountId;
     }
 
-    public long getTransactionDate() {
+    public LocalDate getTransactionDate() {
         return transactionDate;
     }
 

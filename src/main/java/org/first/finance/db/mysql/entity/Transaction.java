@@ -7,6 +7,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -19,9 +21,9 @@ public class Transaction {
     private BigDecimal amount;
     private String description;
 
-    private Long creationTime;
+    private LocalDateTime creationTime;
 
-    private Long transactionDate;
+    private LocalDate transactionDate;
 
     @OneToOne
     private Account account;
@@ -88,11 +90,11 @@ public class Transaction {
         this.description = description;
     }
 
-    public Long getCreationTime() {
+    public LocalDateTime getCreationTime() {
         return creationTime;
     }
 
-    public void setCreationTime(Long creationTime) {
+    public void setCreationTime(LocalDateTime creationTime) {
         this.creationTime = creationTime;
     }
 
@@ -120,11 +122,11 @@ public class Transaction {
         this.asset = asset;
     }
 
-    public Long getTransactionDate() {
+    public LocalDate getTransactionDate() {
         return transactionDate;
     }
 
-    public void setTransactionDate(Long transactionDate) {
+    public void setTransactionDate(LocalDate transactionDate) {
         this.transactionDate = transactionDate;
     }
 

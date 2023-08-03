@@ -37,6 +37,11 @@ public class ScotiaDebitAccountSeleniumParser extends ScotiaCardAccountSeleniumP
     }
 
     @Override
+    protected void preProcessDescriptionForKnownTransactions(TransactionDto transactionDto) {
+        //if ()
+    }
+
+    @Override
     protected UITransactionField[] getUITransactionFieldsInOrder() {
         return new UITransactionField[] {
                 DATE,

@@ -61,6 +61,7 @@ public class ScotiaSavingAccountSeleniumParser extends ScotiaAccountSeleniumPars
                 select.selectByIndex(i);
                 CommonUtils.sleep(3000);
                 processPeriod(asset, dbAccount, chromeDriver, assetCurrentAmount);
+                // todo compare amounts and return if equals
             }
             LOG.info("{} asset processed", asset.getName());
         }
@@ -74,7 +75,7 @@ public class ScotiaSavingAccountSeleniumParser extends ScotiaAccountSeleniumPars
         if (transactions.size() == 0 || "No transactions available".equals(transactions.get(0).getText())) {
             return;
         }
-        long currentDate = LocalDate.now().toEpochDay();
+        LocalDate currentDate = LocalDate.now();
         Collection<TransactionDto> transactionsToProcess = new ArrayList<>();
         for (WebElement uiTransaction : transactions) {
             TransactionDto transactionDto = collectTransactionData(uiTransaction);
@@ -83,10 +84,10 @@ public class ScotiaSavingAccountSeleniumParser extends ScotiaAccountSeleniumPars
             }
             transactionDto.setAccountId(dbAccount.getId());
             transactionDto.setAssetId(asset.getId());
-            long transactionDate = transactionDto.getTransactionDate();
+            LocalDate transactionDate = transactionDto.getTransactionDate();
 
             if (currentDate != transactionDate) {
-                getTransactionService().processTransactions(transactionsToProcess, dbAccount, asset.getId(), currentDate);
+                getTransactionService().processTransactions(transactionsToProcess, dbAccount.getId(), asset.getId(), currentDate);
                 asset = getAssetRepository().findById(asset.getId()).orElseThrow();
                 dbAccount = getAccountRepository().findById(dbAccount.getId()).orElseThrow();
                 if (assetCurrentAmount.compareTo(asset.getAmount()) == 0) {
@@ -97,7 +98,7 @@ public class ScotiaSavingAccountSeleniumParser extends ScotiaAccountSeleniumPars
             }
             transactionsToProcess.add(transactionDto);
         }
-        getTransactionService().processTransactions(transactionsToProcess, dbAccount, asset.getId(), currentDate);
+        getTransactionService().processTransactions(transactionsToProcess, dbAccount.getId(), asset.getId(), currentDate);
     }
 
     @Transactional

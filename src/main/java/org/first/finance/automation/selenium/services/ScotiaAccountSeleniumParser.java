@@ -137,13 +137,18 @@ public abstract class ScotiaAccountSeleniumParser {
             transactionDto.setType(TransactionType.CREDIT);
         }
         if (date != null) {
-            transactionDto.setTransactionDate(DateUtils.toLocalDate(date).toEpochDay());
+            transactionDto.setTransactionDate(DateUtils.toLocalDate(date));
         }
         if (amount != null) {
             transactionDto.setAmount(AmountUtils.parseAmount(amount));
         }
+        preProcessDescriptionForKnownTransactions(transactionDto);
         transactionDto.setServiceProviderId(resolveServiceProvider(description, category).getId());
         return transactionDto;
+    }
+
+    protected void preProcessDescriptionForKnownTransactions(TransactionDto transactionDto) {
+        // do nothing
     }
 
     protected String findTextForField(List<? extends WebElement> uiTransactionFields, UITransactionField uiTransactionField) {

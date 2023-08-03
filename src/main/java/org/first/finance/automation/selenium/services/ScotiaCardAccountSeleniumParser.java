@@ -23,7 +23,7 @@ public abstract class ScotiaCardAccountSeleniumParser extends ScotiaAccountSelen
     @Override
     public void processAccount(AccountDto uiAccount, Account dbAccount, ChromeDriverPlus chromeDriver) {
         List<WebElementPlus> uiTransactions = chromeDriver.conditionalGetElements(getPath(SeleniumPath.TRANSACTIONS_LIST));
-        long currentDate = LocalDate.now().toEpochDay();
+        LocalDate currentDate = LocalDate.now();
         Collection<TransactionDto> transactionsToProcess = new ArrayList<>();
         for (WebElementPlus uiTransaction : uiTransactions) {
             TransactionDto transactionDto = collectTransactionData(uiTransaction);
@@ -31,10 +31,10 @@ public abstract class ScotiaCardAccountSeleniumParser extends ScotiaAccountSelen
                 continue;
             }
             transactionDto.setAccountId(dbAccount.getId());
-            long transactionDate = transactionDto.getTransactionDate();
+            LocalDate transactionDate = transactionDto.getTransactionDate();
 
             if (currentDate != transactionDate) {
-                getTransactionService().processTransactions(transactionsToProcess, dbAccount, currentDate);
+                getTransactionService().processTransactions(transactionsToProcess, dbAccount.getId(), currentDate);
                 dbAccount = getAccountRepository().findById(dbAccount.getId()).orElseThrow();
                 if (uiAccount.getAmount().compareTo(dbAccount.getAmount()) == 0) {
                     return;
@@ -44,7 +44,7 @@ public abstract class ScotiaCardAccountSeleniumParser extends ScotiaAccountSelen
             }
             transactionsToProcess.add(transactionDto);
         }
-        getTransactionService().processTransactions(transactionsToProcess, dbAccount, currentDate);
+        getTransactionService().processTransactions(transactionsToProcess, dbAccount.getId(), currentDate);
     }
 
     @Override
